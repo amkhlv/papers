@@ -36,14 +36,26 @@
 
 @page["Introduction" #:tag "Introduction" #:showtitle #t]
 
-The BV approach to the string worldsheet theory was developed in @cite{Mikhailov:2016myt}
-and @cite{Mikhailov:2016rkp}. It involves the construction of a pseudo-differential
-form on the space of Lagrangian submanifolds in the BV phase space of the worldsheet sigma-model,
-base with respect to the action of the worldsheet diffeomorphisms.
-The construction of equivariant form in @cite{Mikhailov:2016myt},@cite{Mikhailov:2016rkp}
+BV formalism is a generalization of the BRST formalism, based on the mathematical theory of
+odd symplectic supermanifolds. In this formalism the path integral is interpreted as
+an integral of a density of weight @f{1/2} over a Lagrangian submanifold. It turns out that
+this ``standard'' formulation is not sufficient to describe string worldsheet theory.
+One has to also consider integration over @bold{families} of Lagrangian submanifolds.
+Indeed, the idea of @cite{Schwarz:2000ct} was to interpret integration over the worldsheet metrics
+as a particular case of integration over the space of gauge fixing conditions.
+Varying the worldsheet metric is a particular case of varying the Lagrangian submanifold.
+Taking into account the worldsheet diffeomorphism invariance requires an equivariant
+version of this integration procedure.
+(In a sense, worldsheet metric is not necessarily a preferred object. Varying the worldsheet
+    metric is just one way to build an integration cycle, there are others. The worldsheet
+    diffeomorphisms, however, @bold{are} special.)
+                                           
+
+It was developed in @cite{Mikhailov:2016myt}
+and @cite{Mikhailov:2016rkp}. The construction of equivariant form
 involves a map of some differential graded Lie algebra (DGLA)  @f{D\bf g} into the algebra of functions
 on the BV phase space of the string sigma-model.
-To the best of our knowledge, @f{D\bf g} was first introduced, or at least clearly explained,
+To the best of our knowledge, @f{D\bf g} was first introduced, or at least clearly presented,
 in  @cite{Alekseev:2010gr}.
 Here we will rederive some constructions of @cite{Mikhailov:2016myt},@cite{Mikhailov:2016rkp}
 using an algebraic language which emphasizes the DGLA structure,
@@ -53,12 +65,10 @@ in equivariant BV formalism, @italic{i.e.} the ``worst-case scenario'' in terms 
 The construction of @f{D\bf g} is a generalization of the construction
 of the ``cone'' superalgebra @f{C\bf g} (which is called ``supersymmetrized Lie superalgebra''
                                                in @cite{Cordes:1994fc}).
-There is a projection @f{D{\bf g}\longrightarrow C{\bf g}}. 
-At this time, we do not have concrete examples of string worldsheet theories using @f{D\bf g} which
-would not reduce to projection into @f{C{\bf g}}. It is likely that pure spinor superstring in AdS
-background is an example, but we only have a partial construction
-@cite{Mikhailov:2017mdo}.
 
+We will now briefly outline these constructions, and the results of the present paper.
+
+@subpage[1 "The cone of Lie superalgebra" #:tag "sec:IntroCone"]
      
 For every Lie superalgebra @f{\bf a}, we can define a
 Differential Graded Lie superalgebra @f{C\bf a} (the ``cone'' of @f{\bf a}) as follows.
@@ -85,8 +95,38 @@ to supermanifolds and pseudo-differential forms (PDFs) on @f{M}. The elements of
 act as Lie derivatives. For each @f{x\in {\bf a}} we denote @f{{\cal L}\langle x\rangle} the corresponding
 Lie derivative. The elements of @f{s{\bf a}\subset {\bf a} \oplus s{\bf a}} act as ``contractions''.
 For @f{x\in {\bf a}}, the contraction will be denoted @f{\iota\langle x\rangle}.
-(We use angular brackets @f{f\langle x\rangle} when @f{f} is a linear function, to highlight linear dependence
-    on @f{x}.)
+(We use angular brackets @f{f\langle x\rangle} when @f{f} is a linear function, to highlight linear dependence on @f{x}.)
+We have:
+@(align
+  r.l.n
+  `(@,f{d \iota\langle x\rangle \;=\;} @,f{{\cal L}\langle x\rangle} @,label{DefCone})
+  `(@,f{d {\cal L}\langle x\rangle \;=\;} @,f{0} "")
+  )
+          
+
+
+@subpage[1 @f{D\bf g} #:tag "sec:IntroDg"]
+
+The definition of @f{D\bf g} is similar to the definition of @f{C\bf g}. Essentially, we replace
+the commutative ideal  @f{s{\bf g}\subset C{\bf g}} with a free Lie superalgebra of the linear space
+@f{s^{-1}\mbox{Symm}(s^2{\bf g})} where @f{\mbox{Symm}(s^2{\bf g})} is the space of symmetric
+tensors of @f{s^2\bf g}. 
+Instead of defining  the commutators to be zero, we only require that some linear combinations of
+commutators are @f{d_{D\bf g}}-exact. Eq. (@ref{DefCone}) is replaced with:
+@(align
+  r.l.n
+  `(@,f{di(x) + {1\over 2}[i(x),i(x)] \;=\;} @,f{l\langle x\rangle} @,label{IntroDefDg})
+  `(@,f{dl\langle x\rangle \;=\;} @,f{0} "")
+  `(@,f{[l\langle x\rangle , l\langle y\rangle] \;=\;} @,f{l\langle [x,y] \rangle} "")
+  )
+In particular, if @f{i(x)} is a linear function of @f{x}, then @f{D\bf g} becomes @f{C\bf g}.
+In 〚@seclink["DefDg"]{@secref{DefDg}}〛 we explain the details of the construction, and why it is
+very natural. We slightly generalize it, by allowing @f{\bf g} to be  a  Lie superalgebra
+(while in @cite{Alekseev:2010gr} it was a Lie algebra).
+
+
+
+@subpage[1 "String measure" #:tag "sec:IntroStringMeasure"]
 
 In BV formalism, to every half-density @f{\rho_{1/2}} satisfying the Quantum Master Equation corresponds
 a closed PDF on the space of Lagrangian submanifolds, which we denote @f{\Omega}
@@ -98,34 +138,54 @@ very special property:
 where @f{x\in\bf a}, @f{\bf a} is the algebra of functions on the BV phase space, 
 and @f{\Delta} is some differential on @f{\bf a}, which is associated to the half-density @f{\rho_{1/2}}.
 This form @f{\Omega} is @bold{inhomogeneous},
-@italic{i.e.} does not have a definite rank. It is, generally speaking, a pseudo-differential form.
+@italic{i.e.} does not have a definite rank. It is, generally speaking, a pseudo-differential form (PDF).
 Otherwise, Eq. (@ref{SpecialPropertyOfOmega}) would not make sense.
 We rederive @f{\Omega} in
-@seclink["sec:CorrelationFunctionsAreCocycle"]{«@secref{sec:CorrelationFunctionsAreCocycle}»}.
+〚@seclink["sec:CorrelationFunctionsAreCocycle"]{@secref{sec:CorrelationFunctionsAreCocycle}}〛.
 
+@subpage[1 "Equivariant string measure" #:tag "sec:IntroEquivariant"]
+
+Let @f{{\bf g}\subset {\bf a}} be the algebra of vector fields on the worldsheet.
 In the BV approach to string worldsheet theory,  worldsheet diffeomorphisms are symmetries of @f{\rho_{1/2}},
-and therefore of @f{\Omega}. 
-Let @f{{\bf g}\subset {\bf a}} be the algebra of vector fields on the worldsheet. We are interested
-in constructing the @f{{\bf g}}-equivariant version of @f{\Omega}. Generally speaking, there is no
-good algorithm for constructing an equivariant PDF out of an invariant PDF. But in our case,
-since @f{\Omega} satisfies Eq. (@ref{SpecialPropertyOfOmega}), we can reduce the construction
+and therefore   @f{\Omega} is @f{\bf g}-invariant. We are interested in constructing the @f{{\bf g}}-equivariant version of @f{\Omega}.
+Generally speaking, there is no good algorithm for constructing an equivariant PDF out of an invariant PDF.
+But in our case, since @f{\Omega} satisfies Eq. (@ref{SpecialPropertyOfOmega}), we can reduce the construction
 of equvariant form to the construction of a an embedding  @f{{D\bf g}\rightarrow {\bf a}}
---- see @seclink["AnsatzForEquivariantForm"]{«@secref{AnsatzForEquivariantForm}»}.
+--- see 〚@seclink["AnsatzForEquivariantForm"]{@secref{AnsatzForEquivariantForm}}〛.
 
-The definition of @f{D\bf g} is similar to the definition of @f{C\bf g}. Essentially, we replace
-the commutative ideal  @f{s{\bf g}\subset C{\bf g}} with a free Lie superalgebra.
-Instead of defining  the commutators to be zero, we only require that some linear combinations of
-commutators are @f{d_{D\bf g}}-exact. In 
-@seclink["DefDg"]{«@secref{DefDg}»}
-we give the details of the construction,
-generalizing it to Lie superalgebras.
-We actually use, in our constructions, the @bold{cone} of @f{D\bf g}, @italic{i.e.} @f{CD\bf g}.
-We study the ``combined'' construction @f{CD\bf g} 
-in @seclink["SpecialCocycles"]{«@secref{SpecialCocycles}»}.
+@subpage[1 "Vertex operators" #:tag "sec:IntroVertexOperators"]
 
-In @seclink["IntegratedAndUnintegrated"]{«@secref{IntegratedAndUnintegrated}»} we show that
-the map @f{{D\bf g}\rightarrow {\bf a}} can be used to convert unintegrated vertex operators
-into integrated vertex operators on the string worldsheet.
+Consider @bold{deformations} of @f{\Omega}. In string theory context they are called ``vertex operators''.
+It is useful to consider deformations which break some of the symmetries. Typically, we insert
+some operators at some points on the wordsheet, breaking the diffeomorphisms down to the subgroup preserving
+that set of points. This is the ``unintegrated vertex operator''. Then, there exists an averaging
+procedure which restores the symmetry group back to all diffeomorphisms.
+The result of this averaging is effectively an insertion of ``integrated vertex operator'' which preserves
+all the diffeomorphisms. This relation between unintegrated and integrated vertex operators is important
+in string theory.
+
+As we show in 〚@seclink["IntegratedAndUnintegrated"]{@secref{IntegratedAndUnintegrated}}〛,
+this averaging procedure requires an action of @f{D\bf g}. This may be surprizing, because
+symmetries act by @f{l\langle x\rangle}  of Eq. (@ref{IntroDefDg}). Just to define the action of
+symmetries, we only need @f{l\langle x\rangle}. But the averaging procedure,
+which is needed to compute string amplitudes, does involve @f{i(x)}. 
+
+
+In previously studied cases, such as bosonic or NSR string, @f{D\bf g} reduces to @f{C\bf g},
+and @f{i(x)} is rather simple. The averaging procedure consists of just removing the ghost field from the vertex,
+and then integration over the insertion point.
+In Section 〚@seclink["IntegratedAndUnintegrated"]{@secref{IntegratedAndUnintegrated}}〛
+we derive the general formula, which is rather nontrivial and uses some intertwining
+operator constructed in @cite{Alekseev:2010gr}.
+
+
+At this time, we do not have concrete examples of string worldsheet theories where @f{D\bf g} would
+not enter only through the projection to @f{C{\bf g}}. It is likely that pure spinor superstring in AdS
+background is an example, but we only have a partial construction @cite{Mikhailov:2017mdo}.
+
+
+@subpage[1 "Previous work" #:tag "sec:PreviousWork"]
+
 
 
 
@@ -172,7 +232,7 @@ The cobar construction of @f{A^{\ashriek}} is denoted @f{\Omega\left(A^{\ashriek
 One motivation for using the formalism of quadratic algebras is technical, as it automates
 keeping track of signs. 
 We will translate into ``more elementary'' language of @cite{Alekseev:2010gr} in 
-@seclink["sec:FunctionsOfCurvature"]{«@secref{sec:FunctionsOfCurvature}»}.
+〚@seclink["sec:FunctionsOfCurvature"]{@secref{sec:FunctionsOfCurvature}}〛.
 
 PDF = pseudo-differential form.
 
@@ -208,7 +268,7 @@ Let us consider the cobar construction of @f{A^{\ashriek}}:
 Now the index @f{a} in @f{T^a} means that we consider tensors as forming an algebra, the free algebra.
 The overline over @f{A^{\ashriek}} means that we remove
 the counit, see @cite{LodayVallette} for precise definitions.
-But we, for the reason which will become clear, need a Lie superalgebra, not associative algebra.
+But we, for the reason which will become clear, need a Lie superalgebra, not an associative algebra.
 Consider a subspace:
 @e{
    \mbox{FreeLie}\left(s^{-1}  \overline{A^{\ashriek}}\right) \subset   \Omega\left( A^{\ashriek}\right)
@@ -1053,7 +1113,7 @@ The space of half-densities on the BV phase space is a representation of @f{C{\b
 
 
 
-We are now in the context of  @seclink["sec:PDFsFromCg"]{«@secref{sec:PDFsFromCg}»}.
+We are now in the context of  〚@seclink["sec:PDFsFromCg"]{@secref{sec:PDFsFromCg}}〛.
 Now @f{\bf g} is @f{\bf a}, @f{W} is the space of half-densities,
 @f{d^W_{C\bf g}} is @f{-\Delta_{\rm can}}
 and @f{\cal W} is @f{\mbox{Fun}({\rm LAG})} --- the space of functions on Lagrangian submanifolds.
@@ -1072,7 +1132,7 @@ Correlation function defines a linear map:
     @,label{BVCocycle})
   )
 where @f{\bullet} means symmetrized tensor product
-(examples of sign rules are in @seclink["sec:DualAlgebraOfFunctions"]{«@secref{sec:DualAlgebraOfFunctions}»}).
+(examples of sign rules are in 〚@seclink["sec:DualAlgebraOfFunctions"]{@secref{sec:DualAlgebraOfFunctions}}〛).
 
 @bold{Proposition @(th-num "CorrelatorAsCocycle")}
 Eq. (@ref{BVCocycle}) defines an injective map from the space of half-densities to the space of
@@ -1101,7 +1161,7 @@ It is important for us, that this subset is preserved by the canonical transform
 Cocycles with
 coefficients in @f{\mbox{Fun}({\rm LAG})}, defined by Eq. (@ref{BVCocycle}), 
 can be interpreted as closed differential forms on @f{\rm LAG}, by the construction
-of @seclink["sec:ToPDFs"]{«@secref{sec:ToPDFs}»}. We take:
+of 〚@seclink["sec:ToPDFs"]{@secref{sec:ToPDFs}}〛. We take:
 @(align
   r.l.n
   `(""
@@ -1130,7 +1190,7 @@ For all cocycles coming from half-densities, Eq. (@ref{DefDOmega}) is satisfied 
           @,f{\Delta_{\rho_{1/2}}f = \rho_{1/2}^{-1}\Delta_{\rm can} \left(f\rho_{1/2}\right)}
           "")
   )
-As in  @seclink["sec:SpecialCocycles"]{«@secref{sec:SpecialCocycles}»},
+As in  〚@seclink["sec:SpecialCocycles"]{@secref{sec:SpecialCocycles}}〛,
 suppose that @f{r} is an embedding of @f{D'\bf g} in @f{\bf a}.
 Eq. (@ref{RIntertwinesDifferentials}) becomes (@italic{cp} Eqs. (@ref{iF}) and (@ref{lF})):
 @(align
@@ -1232,7 +1292,7 @@ in our context compute @bold{infinitesimal deformations} of the equivariant half
 @subpage[1 @elem{Integration prescription using @f{C\bf g}} #:tag "sec:IntegrateUsingCone"]
 
 Let us fix @f{i(0)=0}, and consider @f{r\,:\,D{\bf g}\rightarrow {\bf a}}.
-In our discussion in @seclink["sec:Deformations"]{«@secref{sec:Deformations}»},
+In our discussion in 〚@seclink["sec:Deformations"]{@secref{sec:Deformations}}〛,
 we assumed that deformations preserve the symmetries of @f{\omega}, @italic{i.e.} that @f{f} is
 @f{\bf g}-invariant. In string theory, it is useful to consider more general deformations
 breaking @f{\bf g} down to a smaller subalgebra @f{{\bf g}_0}. They are called ``unintegrated vertex operators''.
@@ -1240,7 +1300,7 @@ As their name suggests, @f{\bf g}-invariant deformations can be obtained by inte
 over the orbits of @f{\bf g}. The procedure of integration
 @hyperlink["https://andreimikhailov.com/math/bv/unintegrated-vertex/index.html"]{was described}
 in @cite{Mikhailov:2016rkp}.
-It is a particular case of @seclink["sec:PDFsFromCg"]{«@secref{sec:PDFsFromCg}»},
+It is a particular case of 〚@seclink["sec:PDFsFromCg"]{@secref{sec:PDFsFromCg}}〛,
 where @f{M} is now @f{\rm LAG} --- the space of Lagrangian submanifolds, and
 @f{\intoper} the operation of integration of half-density over a Lagrangian submanifold.
 
@@ -1283,7 +1343,7 @@ and @f{\widehat{d_{C\bf g}}} is:
     @,f{\widehat{d_{C\bf g}}\delta \omega = d\delta \omega}
     @,label{dCgActsAsDelta})
   )
-Therefore the construction of @seclink["sec:PDFsFromCg"]{«@secref{sec:PDFsFromCg}»}, with @f{M=\rm LAG}
+Therefore the construction of 〚@seclink["sec:PDFsFromCg"]{@secref{sec:PDFsFromCg}}〛, with @f{M=\rm LAG}
 and @f{\intoper\langle \delta\omega\rangle = \left[L\mapsto \int_{L\in\rm LAG}f\rho_{1/2}\right]},
 gives a closed form on @f{G} for every deformation of the form Eq. (@ref{IotaDeformation}):
 @(align
@@ -1302,7 +1362,7 @@ gives a closed form on @f{G} for every deformation of the form Eq. (@ref{IotaDef
     "")
   )
 This is just a particular case of the general construction of
-@seclink["sec:CorrelationFunctionsAreCocycle"]{«@secref{sec:CorrelationFunctionsAreCocycle}»},
+〚@seclink["sec:CorrelationFunctionsAreCocycle"]{@secref{sec:CorrelationFunctionsAreCocycle}}〛,
 Eqs. (@ref{MisLAG}), (@ref{IntoperLAG}). We restrict the general construction of @f{\Omega}
 from all @f{\rm LAG} to an orbit of @f{G}. In other words, we consider not all odd canonical transformations,
 but only a subgroup @f{G}.
@@ -1332,7 +1392,7 @@ but only the representation of @f{{\bf g}\subset D{\bf g}};
 we have only used @f{l\langle dg g^{-1}\rangle} and never @f{i(dgg^{-1})}.
 Notice, however, that the whole @f{D\bf g} acts on deformations.
 (This is, ultimately, due to our requirement of @f{\rho_{1/2}} being ``equivariantizeable'',
-      @seclink["EquivariantBV"]{«@secref{EquivariantBV}»}.)
+      〚@seclink["EquivariantBV"]{@secref{EquivariantBV}}〛.)
 Moreover, if we do not care about @f{d_{D\bf g}}, then there are two ways of defining the action of
 just @f{D\bf g}. (It is easy to construct representations of free algebras.)
 The first way is to use the embedding @f{{D\bf g}\stackrel{\cal L}{\rightarrow} CD{\bf g}}.
@@ -1362,7 +1422,7 @@ and the @f{d_{D{\bf g}}} of @f{(D{\bf g},d_{D{\bf g}})} also acts as @f{\Delta}
 
 @subpage[2 @elem{Averaging procedure using @f{D\bf g}} #:tag "sec:AveragingUsingDg"]
 
-Now we can apply the construction of @seclink["PDFsFromDg"]{«@secref{PDFsFromDg}»}.
+Now we can apply the construction of 〚@seclink["PDFsFromDg"]{@secref{PDFsFromDg}}〛.
 Eq. (@ref{OmegaFromDg}) gives:
 @(align
   r.l.n
