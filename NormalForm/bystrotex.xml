@@ -1,0 +1,16 @@
+<config>
+  <scribblings>
+    <scribbling>
+      <name>corrected-vector-fields</name>
+      <args><flag>local</flag></args>
+      <dest>local</dest>
+      <multipage/>
+    </scribbling>
+    <scribbling>
+      <name>corrected-vector-fields</name>
+      <args><flag>server</flag></args>
+      <dest>server</dest>
+      <multipage/>
+    </scribbling>
+  </scribblings>
+</config>
