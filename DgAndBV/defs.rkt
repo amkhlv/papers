@@ -114,6 +114,8 @@
                              (list (make-attributes '((style . "background-color:rgb(253,237,236);")))))
                    x ...)]
                [c (bystro-bg 255 255 255)])
-           b)]))              
+           b)]))
+  (provide appendix)
+  (define appendix (elem #:style (style "bystro-end-of-main-text" '()) '()))
 
   )

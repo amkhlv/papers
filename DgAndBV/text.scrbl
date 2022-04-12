@@ -51,7 +51,7 @@ version of this integration procedure.
     diffeomorphisms, however, @bold{are} special.)
                                            
 
-It was developed in @cite{Mikhailov:2016myt}
+This idea was developed in @cite{Mikhailov:2016myt}
 and @cite{Mikhailov:2016rkp}. The construction of equivariant form
 involves a map of some differential graded Lie algebra (DGLA)  @f{D\bf g} into the algebra of functions
 on the BV phase space of the string sigma-model.
@@ -72,16 +72,17 @@ We will now briefly outline these constructions, and the results of the present 
      
 For every Lie superalgebra @f{\bf a}, we can define a
 Differential Graded Lie superalgebra @f{C\bf a} (the ``cone'' of @f{\bf a}) as follows.
-Consider a graded vector space:
-@e{
-   C{\bf a} = {\bf a}\oplus s{\bf a}
-   }
-where @f{\bf a} is at grade zero, and @f{s{\bf a}} at grade @f{-1}. (The letter @f{s} means ``suspension''.)
 We consider vector superspace @f{\bf a} as a graded vector space, such
 that the grade of all elements is zero. Then, we denote @f{s{\bf a}} the vector space @f{\bf a} with
 flipped statistics  at degree @f{-1}.
 @comment{In our conventions, ``grade'' corresponds to the ``ghost number'';
              statistics is @bold{not} grade mod 2.}
+Consider a graded vector space:
+@e{
+   C{\bf a} = {\bf a}\oplus s{\bf a}
+   }
+where @f{\bf a} is at grade zero, and @f{s{\bf a}} at grade @f{-1}. (The letter @f{s} means ``suspension''.)
+
 The commutator is defined as follows. The commutator of two elements of @f{{\bf a}\subset {\bf a}\oplus s{\bf a}}
 is the commutator of @f{\bf a}, the commutator of two elements of @f{s\bf a} is zero,
 @f{s{\bf a} \subset {\bf a} \oplus s{\bf a}} is an ideal, the action of @f{\bf a} on @f{s\bf a}
@@ -119,7 +120,9 @@ commutators are @f{d_{D\bf g}}-exact. Eq. (@ref{DefCone}) is replaced with:
   `(@,f{dl\langle x\rangle \;=\;} @,f{0} "")
   `(@,f{[l\langle x\rangle , l\langle y\rangle] \;=\;} @,f{l\langle [x,y] \rangle} "")
   )
-In particular, if @f{i(x)} is a linear function of @f{x}, then @f{D\bf g} becomes @f{C\bf g}.
+In particular, if @f{i(x)} is a linear function of @f{x}, then @f{D\bf g} becomes @f{C\bf g}. In this case,
+@f{i(x)} becomes @f{\iota\langle x \rangle} and @f{l\langle x\rangle} becomes @f{{\cal L}\langle x \rangle}.
+In general, @f{i(x)} is a nonlinear function of @f{x} (but @f{l\langle x\rangle} remains linear).
 In 〚@seclink["DefDg"]{@secref{DefDg}}〛 we explain the details of the construction, and why it is
 very natural. We slightly generalize it, by allowing @f{\bf g} to be  a  Lie superalgebra
 (while in @cite{Alekseev:2010gr} it was a Lie algebra).
@@ -135,12 +138,12 @@ very special property:
 @e[#:label "SpecialPropertyOfOmega"]{
    d\iota\langle  x\rangle \;\Omega\;=\; \iota\langle{\Delta x}\rangle \;\Omega
    }
-where @f{x\in\bf a}, @f{\bf a} is the algebra of functions on the BV phase space, 
+where @f{x\in\bf a}, @f{\bf a} is the algebra of infinitesimal odd canonical transformations, 
 and @f{\Delta} is some differential on @f{\bf a}, which is associated to the half-density @f{\rho_{1/2}}.
 This form @f{\Omega} is @bold{inhomogeneous},
 @italic{i.e.} does not have a definite rank. It is, generally speaking, a pseudo-differential form (PDF).
 Otherwise, Eq. (@ref{SpecialPropertyOfOmega}) would not make sense.
-We rederive @f{\Omega} in
+We rederive @f{\Omega} and explain its meaning as a Lie superalgebra cocycle in
 〚@seclink["sec:CorrelationFunctionsAreCocycle"]{@secref{sec:CorrelationFunctionsAreCocycle}}〛.
 
 @subpage[1 "Equivariant string measure" #:tag "sec:IntroEquivariant"]
@@ -153,6 +156,7 @@ But in our case, since @f{\Omega} satisfies Eq. (@ref{SpecialPropertyOfOmega}), 
 of equvariant form to the construction of a an embedding  @f{{D\bf g}\rightarrow {\bf a}}
 --- see 〚@seclink["AnsatzForEquivariantForm"]{@secref{AnsatzForEquivariantForm}}〛.
 
+
 @subpage[1 "Vertex operators" #:tag "sec:IntroVertexOperators"]
 
 Consider @bold{deformations} of @f{\Omega}. In string theory context they are called ``vertex operators''.
@@ -161,20 +165,24 @@ some operators at some points on the wordsheet, breaking the diffeomorphisms dow
 that set of points. This is the ``unintegrated vertex operator''. Then, there exists an averaging
 procedure which restores the symmetry group back to all diffeomorphisms.
 The result of this averaging is effectively an insertion of ``integrated vertex operator'' which preserves
-all the diffeomorphisms. This relation between unintegrated and integrated vertex operators is important
+@bold{all} the diffeomorphisms. This relation between unintegrated and integrated vertex operators is important
 in string theory.
 
 As we show in 〚@seclink["IntegratedAndUnintegrated"]{@secref{IntegratedAndUnintegrated}}〛,
-this averaging procedure requires an action of @f{D\bf g}. This may be surprizing, because
-symmetries act by @f{l\langle x\rangle}  of Eq. (@ref{IntroDefDg}). Just to define the action of
+this averaging procedure requires an action of @f{D\bf g}.  Just to define the action of
 symmetries, we only need @f{l\langle x\rangle}. But the averaging procedure,
 which is needed to compute string amplitudes, does involve @f{i(x)}. 
-
-
 In previously studied cases, such as bosonic or NSR string, @f{D\bf g} reduces to @f{C\bf g},
-and @f{i(x)} is rather simple. The averaging procedure consists of just removing the ghost field from the vertex,
-and then integration over the insertion point.
-In Section 〚@seclink["IntegratedAndUnintegrated"]{@secref{IntegratedAndUnintegrated}}〛
+and @f{i(x)} is a very simple expression. It is basically the contraction of @f{x} with the ghost antifield,
+@e{
+   i(\xi) = \int c^{\star}_{\alpha}\xi^{\alpha} 
+   }
+using the
+@hyperlink["https://andreimikhailov.com/math/bv/bosonic-string/IntegrationOverFamily.html#%28part.%5F.Choice.Of.F%29"]{notations of @cite{Mikhailov:2016rkp}}
+(see also 〚@seclink["sec:GhostNumber"]{@secref{sec:GhostNumber}}〛).
+The averaging procedure consists in this case of simply removing the ghost fields from the vertex,
+and then integrating over the insertion point.
+In 〚@seclink["IntegratedAndUnintegrated"]{@secref{IntegratedAndUnintegrated}}〛
 we derive the general formula, which is rather nontrivial and uses some intertwining
 operator constructed in @cite{Alekseev:2010gr}.
 
@@ -247,254 +255,27 @@ Hyperlinks to web content @hyperlink["https://andreimikhailov.com/math/bv/omega/
 As far as we know, @f{D\bf g} was introduced in @cite{Alekseev:2010gr}, in the context of current algebras.
 We will now present it in the language of quadratic algebras.
 
-@subpage[2 @elem{Definitions of @f{A}, @f{A^{\ashriek}} and @f{\Omega(A^{\ashriek})}} #:tag "sec:DefA"]
+@subpage[2 "Supercommutative algebra and its dual coalgebra" #:tag "sec:DualAlgebraOfFunctions"]
 
-Let @f{\bf g} be a Lie superalgebra. We consider the suspended linear superspace
-@f{s\bf g}, and a supercommutative algebra @f{A} freely generated by it.
-
-Consider its quadratic dual coalgebra:
+Let @f{V} be a super linear space, and @f{T^a(V)} be the tensor algebra generated by @f{V}:
 @e{
-   A^{\ashriek} \subset T^c(s^2{\bf g})
+   T^a(V) = \bigoplus_n V^{\otimes n}
    }
-Here the index @f{c} in @f{T^c} indicates that we consider the space of tensor products as a coalgebra.
-(If we considered it as an algebra, would have called it @f{T^a}.)
-At this point, we consider @f{s{\bf g}} only as a supercommutative algebra.
-The Lie algebra structure on @f{\bf g} is forgotten. 
+Here the upper index @f{a} implies that we consider tensors as forming an @bold{algebra}.
+Let @f{A} be the free super-commutative algebra generated by @f{V}. We define it as the subspace
+of @f{T^a(V)} consisting of symmetric tensors.
+(To define the structure of algebra, we notice that this subspace is isomorphic to the
+    factorspace by @bold{quadratiic relations} of @f{A}, which are antisymmetric tensors in @f{V\otimes V}.)
 
-Let us consider the cobar construction of @f{A^{\ashriek}}:
+Then, the dual coalgebra @f{A^{\ashriek}}, by definition, the subspace of  symmetric tensors the tensor
+coalgebra:
 @e{
-   \Omega\left( A^{\ashriek}\right) = T^a\left(s^{-1}  \overline{A^{\ashriek}}\right)
+   T^c(sV) = \bigoplus_n (sV)^{\otimes n}
    }
-Now the index @f{a} in @f{T^a} means that we consider tensors as forming an algebra, the free algebra.
-The overline over @f{A^{\ashriek}} means that we remove
-the counit, see @cite{LodayVallette} for precise definitions.
-But we, for the reason which will become clear, need a Lie superalgebra, not an associative algebra.
-Consider a subspace:
-@e{
-   \mbox{FreeLie}\left(s^{-1}  \overline{A^{\ashriek}}\right) \subset   \Omega\left( A^{\ashriek}\right)
-   }
-which is generated by commutators. Consider the natural twisting morphism
-@(align
-  r.l.n
-  `(@,f{\alpha \;:\;}
-       @,f{A^{\ashriek} \rightarrow \Omega\left( A^{\ashriek}\right)}
-       "")
-  )
-Its image belongs to @f{s^{-1}  A^{\ashriek}\subset \mbox{FreeLie}\left(s^{-1}  \overline{A^{\ashriek}}\right)}. It satisfies
-the Maurer-Cartan equation:
-@e[#:label "MCAlpha"]{
-   d_{\Omega} \alpha + \alpha * \alpha = 0
-   }
-where @f{d_{\Omega}} is the differential on @f{\Omega\left( A^{\ashriek}\right)} induced by
-the coalgebra structure on @f{A^{\ashriek}}. Since @f{A} is a commutative algebra, @f{\alpha * \alpha} actually belongs to a subspace:
-@e{
-   \mbox{Hom}\left( A^{\ashriek}\,,\,\mbox{FreeLie}\left(s^{-1}  \overline{A^{\ashriek}}\right)\right)
-   \subset
-   \mbox{Hom}\left( A^{\ashriek}\,,\, \Omega\left( A^{\ashriek}\right)\right)
-   }
-We may denote it @f{{1\over 2}[\alpha\stackrel{*}{,}\alpha]}.
-The differential @f{d_{\Omega}} preserves the subspace
-@f{\mbox{FreeLie}\left(s^{-1}  \overline{A^{\ashriek}}\right)\subset \Omega(A^{\ashriek})}.
-Therefore, @f{\mbox{FreeLie}\left(s^{-1}  \overline{A^{\ashriek}}\right)} with @f{d_{\Omega}} is a differential graded Lie superalgebra.
-
-@subpage[2 @elem{Definition of @f{D\bf g}} #:tag "subsec:Dg"]
-
-Let us consider a larger algebra:
-@e[#:label "SemidirectSum"]{
-   D{\bf g} \;=\; {\bf g} \stackrel{\rightarrow}{\oplus} \mbox{FreeLie}\left(s^{-1}  \overline{A^{\ashriek}}\right)
-   }
-Here @f{\stackrel{\rightarrow}{\oplus}} stands for semidirect sum of Lie superalgebras, with arrow pointing towards the ideal.
-The embedding of @f{\bf g} into @f{D\bf g} as the first summand will be denoted @f{l}:
-@e[#:label "EmbeddingL"]{
-   l\;:\;{\bf g} \rightarrow D{\bf g}
-   }
+(Here the upper index @f{c} means that we consider it as a coalgebra.)
 
 
-@bold{Commutator of @f{D\bf g}}
-
-
-@(itemlist
-  @item{
-        The commutator of two elements of @f{\mbox{FreeLie}\left(s^{-1}  \overline{A^{\ashriek}}\right)} is the commutator
-        of free Lie algebra.
-        }
-  @item{
-        The commutator of two elements of @f{\bf g} is the commutator of @f{\bf g}.
-        }
-  @item{        
-        The commutator of elements of @f{\bf g} and elements of @f{\mbox{FreeLie}\left(s^{-1}  \overline{A^{\ashriek}}\right)}
-        corresponds to the natural action of @f{\bf g} on @f{A^{\ashriek}}.
-        }
-  )
-When considering a commutator of an element of  @f{\bf g} and an element of @f{\mbox{FreeLie}\left(s^{-1} \overline{A^{\ashriek}}\right)},
-the following description is useful.
-Consider the @f{UC\bf g} -- the universal enveloping algebra of @f{C\bf g}, and its
-dual coalgebra @f{UC{\bf g}^{\ashriek}}:
-@e{
-   UC{\bf g}^{\ashriek} = T^c\left(s({\bf g} \oplus s{\bf g})\right)
-   }
-Consider the projector @f{p}:
-@(align
-  r.l.n
-  `(@,f{p\;:\;}
-       @,f{UC{\bf g}^{\ashriek}\rightarrow s{\bf g}\oplus A^{\ashriek}}
-       @,label{ProjectorP})
-  )
-which is identity on @f{s{\bf g}\oplus A^{\ashriek}\;\subset\;T^c\left(s({\bf g} \oplus s{\bf g})\right)}
-and zero on all tensors of rank @f{\geq 2} containing at least one @f{sx \in s{\bf g}}.
-This induces a map from @f{\Omega^1 \left(UC{\bf g}^{\ashriek}\right)} to @f{D\bf g} which we also
-denote @f{p}:
-@e[#:label "LiftedProjectorP"]{
-   \Omega^1 \left(UC{\bf g}^{\ashriek}\right) =
-   s^{-1}UC{\bf g}^{\ashriek}
-   \stackrel{p}{\longrightarrow}
-   {\bf g}\oplus s^{-1}A^{\ashriek} \subset D{\bf g}
-   }
-For any Lie superalgebra @f{\bf a} let @f{\gamma} denote the commutator map:
-@(align
-  r.l.n
-  `(""
-    @,f{\gamma\;:\; {\bf a}\otimes {\bf a} \rightarrow {\bf a}}
-    "")
-  `(""
-    @,f{\gamma(v\otimes w) = [v,w]}
-    "")
-  )
-In case of @f{{\bf a} = D{\bf g}}, we can consider @f{D{\bf g} \otimes D{\bf g}} as
-a subspace in @f{\Omega^2(UC{\bf g}^{\ashriek})} using the projector @f{p} of Eq. (@ref{LiftedProjectorP}):
-@e{
-   p\otimes p \;:\; \Omega^2(UC{\bf g}^{\ashriek}) \rightarrow D{\bf g} \otimes D{\bf g}
-   }
-Then, the commutator on @f{D{\bf g}} satisfies:
-@(align
-  r.l.n
-  `(""
-    @,f{
-        \gamma\;(p\otimes p)\; d_{\Omega(UC{\bf g}^{\ashriek})} \;s^{-1}b \;=\; - s^{-1} d_{UC{\bf g}^{\ashriek}}b
-        }
-    "")
-  `(@,elem[#:style 'no-break]{where@hspace[1]}
-          @,v+[4 @f{b\;=\;s\xi\otimes a + (-)^{(\xi+1)a} a\otimes s\xi\;\in\;UC{\bf g}^{\ashriek}}]
-          "")
-  `(""
-    @,f{\xi\in {\bf g}\;,\quad a\in A^{\ashriek}}
-    "")
-  )
-
-
-@bold{Differential @f{d'} of @f{D\bf g}}
-
-There is a natural projection:
-@e{
-   \pi \;:\; A^{\ashriek} \rightarrow s^2{\bf g}
-   }
-annihilating all tensors with rank @f{\geq 1}
-(@italic{i.e.} @f{\mbox{ker}\pi = \left(A^{\ashriek}\right)^{\geq 1}}).
-We define a differential @f{d'} on @f{{\bf g} \stackrel{\rightarrow}{\oplus} \mbox{FreeLie}\left(s^{-1} \overline{A^{\ashriek}}\right)}, in the following way.
-@(itemlist
-  @item{We postulate that the action of @f{d'} on @f{\bf g} be zero:
-@e[#:label "DPrimeOnG"]{
-                        d'|_{\bf g} = 0
-                        }
-}
-  @item{Since @f{\mbox{FreeLie}} is a left adjoint to the forgetful
-              functor, we just need to define the action of @f{d'} on
-              @f{s^{-1}  A^{\ashriek} \subset \mbox{FreeLie}\left(s^{-1}  \overline{A^{\ashriek}}\right)}. 
-We put:
-@e[#:label "DPrimeOnA"]{
-                        d'|_{s^{-1}  A^{\ashriek}} = s^{-1}\circ\pi \;:\; s^{-1}  A^{\ashriek} \rightarrow {\bf g}
-                        }
-}
-  )
-We then extend Eqs. (@ref{DPrimeOnG}) and (@ref{DPrimeOnA}) to the differential @f{d'} of 
-@f{{\bf g}\stackrel{\rightarrow}{\oplus}\mbox{FreeLie}\left(s^{-1}  \overline{A^{\ashriek}}\right)}.
-
-We will now prove that @f{d'} anticommutes with @f{d_{\Omega}}:
-@e[#:label "DsAnticommute"]{
-   d'd_{\Omega} + d_{\Omega} d' = 0
-   }
-When @f{b\in \left(A^{\ashriek}\right)^{(\geq 2)}},
-by definition @f{d' s^{-1}b =0}. We must therefore check that @f{d' d_{\Omega} s^{-1}b=0}:
-@e{
-   d' d_{\Omega} s^{-1}b = \gamma (p\otimes p) d_{\Omega(UC{\bf g}^{\ashriek})} s^{-1} d_{C\bf g} b =
-   - s^{-1} d_{UC{\bf g}^{\ashriek}}d_{C\bf g}b =
-   s^{-1} d_{C\bf g} d_{UC{\bf g}^{\ashriek}} b = 0
-   }
-
-We consider  @f{{\bf g} \stackrel{\rightarrow}{\oplus} \mbox{FreeLie}\left(s^{-1} \overline{A^{\ashriek}}\right)} with the differential @f{d_{\Omega} + d'} which will be called @f{d_{D\bf g}}:
-@e{
-   d_{D\bf g}=d_{\Omega} + d'
-   }
-
-
-
-@subpage[1 "Representation as vector fields" #:tag "sec:RepVect"]
-
-Consider the @bold{cone} of our free Lie algebra:
-@(align
-  r.l.n
-  `(@,f{{\cal C} \;=\;}
-       @,f{C(\mbox{FreeLie}\left(s^{-1}  \overline{A^{\ashriek}}\right))}
-       "")
-  `(@,f{{\cal L}\;:\;}
-    @,f{\mbox{FreeLie}\left(s^{-1}  \overline{A^{\ashriek}}\right)
-             \longrightarrow C(\mbox{FreeLie}\left(s^{-1}  \overline{A^{\ashriek}}\right))}
-       "")
-  `(@,f{\iota\;:\;}
-    @,f{\mbox{FreeLie}\left(s^{-1}  \overline{A^{\ashriek}}\right)
-          \longrightarrow C(\mbox{FreeLie}\left(s^{-1}  \overline{A^{\ashriek}}\right))}
-       "")
-  )
-and its universal enveloping algebra @f{U{\cal C}}. Eq. (@ref{MCAlpha}) implies:
-@(align
-  r.l.n
-  `[""
-    @,f{
-        (d_{\cal C} + d_{\Omega}) \exp(-\iota\circ\alpha) =
-        \exp(-\iota\circ\alpha) (d_{\cal C} + d_{\Omega} + {\cal L}\circ\alpha)
-        }
-    @,label{DWithExp}]
-  )
-This is an equation in the completion of @f{\mbox{Hom}\left( A^{\ashriek}\,,\,U{\cal C}\right)}, and @f{\exp(x)} is understood as
-@f{1 + x + {1\over 2} x*x + \ldots}.
-
-Let @f{M} be some supermanifold, and @f{\mbox{Vect}(M)} the algebra of vector fields on it.
-Suppose that we are given a map of linear spaces:
-@e{
-   s^{-1}  A^{\ashriek} \rightarrow \mbox{Vect}(M)
-   }
-Such a map defines a representation of @f{\cal C} in the space of pseudo-differential forms (PDFs) on @f{M}.
-We want to project Eq. (@ref{DWithExp}) on the space of PDFs on @f{M}. It is not possible to do directly,
-because we do not require that @f{d_{\Omega}} act on PDFs.
-Instead, consider the following version of Eq. (@ref{DWithExp}):
-@(align
-  r.l.n
-  `(""
-    @,f{
-        d_M \exp(-\iota\circ\alpha) \omega =
-        \exp(-\iota\circ\alpha) (d_M + \iota\circ (d_{\Omega}\alpha) + {\cal L}\circ\alpha)\omega
-        }
-    @,label{DMwithExpIota})
-  `(""
-    @,f{\omega \in \mbox{Hom}( A^{\ashriek},\mbox{Fun}(\Pi T M))}
-    "")
-  )
-for all @f{\omega \in \mbox{Hom}( A^{\ashriek},\mbox{Fun}(\Pi T M))}. 
-
-
-@subpage[1 "Ghost fields" #:tag "sec:DualAlgebraOfFunctions"]
-
-Remember that we start with @f{A} --- the free super-commutative algebra generated by
-the linear superspace @f{V = s{\bf g}}. Elements of @f{A} are symmetric tensors
-in @f{V\otimes\cdots\otimes V}. (The @bold{relations} of @f{A},
-          on the contrary, are antisymmetric tensors in @f{V\otimes V}.)
-
-Then, elements of @f{A^{\ashriek}} are symmetric tensors
-in @f{sV\otimes\cdots\otimes sV}. 
-
-@subpage[2 "Example" #:tag "sec:ExamleAntiShriek"]
-
-Let @f{a\in V,\,b\in V} be even and @f{\psi\in V,\,\eta\in V} be odd.
+For example, let @f{a\in V,\,b\in V} be even and @f{\psi\in V,\,\eta\in V} be odd.
 The following tensors belong to @f{A}:
 @e{
    a\otimes b + b\otimes a\,,\;
@@ -523,9 +304,191 @@ These are @bold{symmetric tensors} in @f{sV}.
 To summarize, if @f{A} is the algebra of symmetric tensors in @f{V},
 then @f{A^{\ashriek}} is the coalgebra of symmetric tensors in @f{sV}.
 
-@subpage[2 @elem{Standard notations} #:tag "sec:FunctionsOfCurvature"]
 
-For us @f{V = s{\bf g}}, therefore @f{A^{\ashriek}} is the coalgebra
+@subpage[2 @elem{Case of @f{V =s{\bf g}}} #:tag "sec:DefA"]
+
+Let @f{\bf g} be a Lie superalgebra. We consider it a graded Lie superalgebra, with all elements
+having grade zero. Let us apply the construction of
+〚@seclink["sec:DualAlgebraOfFunctions"]{@secref{sec:DualAlgebraOfFunctions}}〛
+to @f{V =s{\bf g}}.
+
+
+Consider its quadratic dual coalgebra:
+@e{
+   A^{\ashriek} \subset T^c(s^2{\bf g})
+   }
+At this point, we consider @f{s{\bf g}} only as a supercommutative algebra.
+The Lie algebra structure on @f{\bf g} is forgotten. 
+
+Let us consider the cobar construction of @f{A^{\ashriek}}:
+@e{
+   \Omega\left( A^{\ashriek}\right) = T^a\left(s^{-1}  \overline{A^{\ashriek}}\right)
+   }
+Now the index @f{a} in @f{T^a} means that we consider tensors as forming an algebra, the free algebra.
+The overline over @f{A^{\ashriek}} means that we remove
+the counit, see @cite{LodayVallette} for precise definitions.
+We actually only need a subspace:
+@e{
+   \mbox{FreeLie}\left(s^{-1}  \overline{A^{\ashriek}}\right) \subset   \Omega\left( A^{\ashriek}\right)
+   }
+which is generated by commutators. This is a free Lie superalgebra.
+Consider the natural twisting morphism
+@(align
+  r.l.n
+  `(@,f{\alpha \;:\;}
+       @,f{A^{\ashriek} \rightarrow \Omega\left( A^{\ashriek}\right)}
+       @,label{NaturalTwistingMorphism})
+  )
+which is denoted @f{\iota} in @cite{LodayVallette}, but we reserve @f{\iota} for contraction of a vector
+field into a form.
+Its image belongs to @f{s^{-1}  A^{\ashriek}\subset \mbox{FreeLie}\left(s^{-1}  \overline{A^{\ashriek}}\right)}. It satisfies
+the Maurer-Cartan equation;
+using the notations of Chapter 2 of @cite{LodayVallette}:
+@e[#:label "MCAlpha"]{
+   d_{\Omega} \alpha + \alpha * \alpha = 0
+   }
+where @f{d_{\Omega}} is the differential on @f{\Omega\left( A^{\ashriek}\right)} induced by
+the coalgebra structure on @f{A^{\ashriek}}. Since @f{A} is a supercommutative algebra, @f{\alpha * \alpha} actually belongs to a subspace:
+@e{
+   \mbox{Hom}\left( A^{\ashriek}\,,\,\mbox{FreeLie}\left(s^{-1}  \overline{A^{\ashriek}}\right)\right)
+   \subset
+   \mbox{Hom}\left( A^{\ashriek}\,,\, \Omega\left( A^{\ashriek}\right)\right)
+   }
+(Indeed, the @f{H^0} of the cobar complex is @f{A}, and @f{A} is supercommutative;
+         @f{d_{\Omega}} ``kills the commutator''.)
+This means that we may write @f{{1\over 2}[\alpha\stackrel{*}{,}\alpha]} instead of @f{\alpha *\alpha}.
+
+The differential @f{d_{\Omega}} preserves the subspace
+@f{\mbox{FreeLie}\left(s^{-1}  \overline{A^{\ashriek}}\right)\subset \Omega(A^{\ashriek})}.
+Therefore, @f{\mbox{FreeLie}\left(s^{-1}  \overline{A^{\ashriek}}\right)} with @f{d_{\Omega}} is a differential graded Lie superalgebra.
+
+@subpage[2 @elem{Definition of @f{D\bf g}} #:tag "subsec:Dg"]
+
+Let us consider a larger algebra:
+@e[#:label "SemidirectSum"]{
+   D{\bf g} \;=\; {\bf g} \stackrel{\rightarrow}{\oplus} \mbox{FreeLie}\left(s^{-1}  \overline{A^{\ashriek}}\right)
+   }
+Here @f{\stackrel{\rightarrow}{\oplus}} stands for semidirect sum of Lie superalgebras, with arrow pointing towards the ideal.
+The embedding of @f{\bf g} into @f{D\bf g} as the first summand will be denoted @f{l}:
+@e[#:label "EmbeddingL"]{
+   l\;:\;{\bf g} \rightarrow D{\bf g}
+   }
+
+
+@subpage[3 @elem{Lie superalgebra structure on @f{D\bf g}} #:tag "paragraph:CommDg"]
+
+We define the commutator of two elements of @f{D\bf g} as follows:
+
+@(itemlist
+  @item{
+        The commutator of two elements of @f{\mbox{FreeLie}\left(s^{-1}  \overline{A^{\ashriek}}\right)} is the commutator
+        of the free Lie algebra.
+        }
+  @item{
+        The commutator of two elements of @f{\bf g} is the commutator of @f{\bf g}.
+        }
+  @item{        
+        The commutator of elements of @f{\bf g} and elements of @f{\mbox{FreeLie}\left(s^{-1}  \overline{A^{\ashriek}}\right)}
+        corresponds to the natural action of @f{\bf g} on @f{A^{\ashriek}}.
+        }
+  )
+
+
+@subpage[3 @elem{Differential @f{d'} of @f{D\bf g}} #:tag "paragraph:DifferrentialOfDg"]
+
+There is a natural projection:
+@e{
+   \pi \;:\; A^{\ashriek} \rightarrow s^2{\bf g}
+   }
+annihilating all tensors with rank @f{\geq 1}
+(@italic{i.e.} @f{\mbox{ker}\pi = \left(A^{\ashriek}\right)^{\geq 1}}).
+We define a differential @f{d'} on @f{{\bf g} \stackrel{\rightarrow}{\oplus} \mbox{FreeLie}\left(s^{-1} \overline{A^{\ashriek}}\right)}, in the following way.
+@(itemlist
+  @item{We postulate that the action of @f{d'} on @f{\bf g} (the first term in Eq. (@ref{SemidirectSum})) be zero:
+@e[#:label "DPrimeOnG"]{
+                        d'|_{\bf g} = 0
+                        }
+}
+  @item{It is enough to define the action of @f{d'} on
+              @f{s^{-1}  A^{\ashriek} \subset \mbox{FreeLie}\left(s^{-1}  \overline{A^{\ashriek}}\right)}. 
+We put:
+@e[#:label "DPrimeOnA"]{
+                        d'|_{s^{-1}  A^{\ashriek}} = s^{-1}\circ\pi \;:\; s^{-1}  A^{\ashriek} \rightarrow {\bf g}
+                        }
+}
+  )
+We then extend Eqs. (@ref{DPrimeOnG}) and (@ref{DPrimeOnA}) to the differential @f{d'} of 
+@f{{\bf g}\stackrel{\rightarrow}{\oplus}\mbox{FreeLie}\left(s^{-1}  \overline{A^{\ashriek}}\right)}.
+
+We consider  @f{{\bf g} \stackrel{\rightarrow}{\oplus} \mbox{FreeLie}\left(s^{-1} \overline{A^{\ashriek}}\right)} with the differential @f{d_{\Omega} + d'} which will be called @f{d_{D\bf g}}:
+@e{
+   d_{D\bf g}=d_{\Omega} + d'
+   }
+The nilpotence of @f{d_{D\bf g}} follows from the fact that @f{d_{\Omega}} anticommutes with @f{d'}:
+@e[#:label "DsAnticommute"]{
+   d'd_{\Omega} + d_{\Omega} d' = 0
+   }
+This is proven in 〚@seclink["sec:AppendixNilpotence"]{@secref{sec:AppendixNilpotence}}〛.
+
+
+@subpage[1 "Representation as vector fields" #:tag "sec:RepVect"]
+
+Consider the @bold{cone} of our free Lie algebra:
+@(align
+  r.l.n
+  `(@,f{{\cal C} \;=\;}
+       @,f{C(\mbox{FreeLie}\left(s^{-1}  \overline{A^{\ashriek}}\right))}
+       "")
+  `(@,f{{\cal L}\;:\;}
+    @,f{\mbox{FreeLie}\left(s^{-1}  \overline{A^{\ashriek}}\right)
+             \longrightarrow C(\mbox{FreeLie}\left(s^{-1}  \overline{A^{\ashriek}}\right))}
+       "")
+  `(@,f{\iota\;:\;}
+    @,f{\mbox{FreeLie}\left(s^{-1}  \overline{A^{\ashriek}}\right)
+          \longrightarrow C(\mbox{FreeLie}\left(s^{-1}  \overline{A^{\ashriek}}\right))}
+       "")
+  )
+and its universal enveloping algebra @f{U{\cal C}}. The Maurer-Cartan Eq. (@ref{MCAlpha}) implies:
+@(align
+  r.l.n
+  `[""
+    @,f{
+        (d_{\cal C} + d_{\Omega}) \exp(-\iota\circ\alpha) =
+        \exp(-\iota\circ\alpha) (d_{\cal C} + d_{\Omega} + {\cal L}\circ\alpha)
+        }
+    @,label{DWithExp}]
+  )
+This is an equation in the completion of @f{\mbox{Hom}\left( A^{\ashriek}\,,\,U{\cal C}\right)}, and @f{\exp(x)} is understood as
+@f{1 + x + {1\over 2} x*x + \ldots}.
+
+Let @f{M} be some supermanifold, and @f{\mbox{Vect}(M)} the algebra of vector fields on it.
+Suppose that we are given a map of linear spaces:
+@e{
+   s^{-1}  A^{\ashriek} \rightarrow \mbox{Vect}(M)
+   }
+Such a map defines a representation of @f{\cal C} in the space of pseudo-differential forms (PDFs) on @f{M}.
+We want to project Eq. (@ref{DWithExp}) on the space of PDFs on @f{M}. It is not possible to do directly,
+because we do not require that @f{d_{\Omega}} act on PDFs.
+Instead, we will use the following version of Eq. (@ref{DWithExp}):
+@(align
+  r.l.n
+  `(""
+    @,f{
+        d_M \exp(-\iota\circ\alpha) \omega =
+        \exp(-\iota\circ\alpha) (d_M + \iota\circ (d_{\Omega}\alpha) + {\cal L}\circ\alpha)\omega
+        }
+    @,label{DMwithExpIota})
+  `(""
+    @,f{\omega \in \mbox{Hom}( A^{\ashriek},\mbox{Fun}(\Pi T M))}
+    "")
+  )
+for all @f{\omega \in \mbox{Hom}( A^{\ashriek},\mbox{Fun}(\Pi T M))}. 
+
+
+
+@subpage[2 @elem{Simpler notations} #:tag "sec:FunctionsOfCurvature"]
+
+For us @f{V = s{\bf g}}, and @f{A^{\ashriek}} is the coalgebra
 of symmetric tensors in @f{s^2\bf g}. Therefore, the space @f{\mbox{Hom}\left(A^{\ashriek},L\right)}
 can be thought of as the space of formal Taylor series of functions on the superspace @f{s^2\bf g}
 with values in a linear superspace @f{L}.
@@ -629,7 +592,8 @@ Consider the equation:
 We can write such an equations in any @f{\bf g}-differential module @f{W}, not necessarily
 PDFs on @f{M}.
 
-Now suppose that @f{W} is a @f{D'\bf g}-differential module. Since @f{\bf g} is embedded into @f{D'{\bf g}},
+Now suppose that @f{W} is a @f{D'\bf g}-differential module (= representation of @f{CD'\bf g}).
+Since @f{\bf g} is embedded into @f{D'{\bf g}},
 we can still write the Cartan Eq. (@ref{CartanEq}):
 @e{
    (d + \iota\langle l\langle F\rangle \rangle)\omega^{\tt C} = 0
@@ -853,24 +817,25 @@ in notations of Eqs. (@ref{iF}) and (@ref{lF}):
 
 
          In this Section, there is no @f{D{\bf g}} nor @f{D'\bf g}. We forget about them for now.
-As a preparation for BV formalism, we will now discuss yet another formula of Kalkman type.
+As a preparation for BV formalism, we will now discuss another formula similar to Eq. (@ref{DWithExp}).
 
-Consider a Lie superalgebra @f{\bf a} and its cone @f{C{\bf a}}, which is generated by
-@f{{\cal L}\langle x\rangle} and @f{\iota\langle x\rangle}, where @f{x\in \bf a}.
+Consider a Lie superalgebra @f{\bf a}, its universal enveloping algebra @f{U\bf a}, and its cone @f{C{\bf a}}, generated by
+@f{{\cal L}\langle x\rangle} and @f{\iota\langle x\rangle},  @f{x\in \bf a}.
 We consider the quadratic-linear dual coalgebra @f{U{\bf a}^{\ashriek}}.
 The dual space @f{\left(U{\bf a}^{\ashriek}\right)^* = \mbox{Hom}\left(U{\bf a}^{\ashriek},{\bf K}\right)}
-is the algebra of functions of the ``ghost variables'' @f{c^A}. The universal twisting morphism is:
-@e{
-   \alpha = c^A e_A\;:\; U{\bf a}^{\ashriek} \rightarrow {\bf a} \subset U{\bf a}
+is the algebra of functions of the ``ghost variables'' @f{c^A}.
+Following Section 3.4 of @cite{LodayVallette}, the Koszul twisting morphism is:
+@e[#:label "KoszulTwistingMorphism"]{
+   \kappa = c^A e_A\;:\; U{\bf a}^{\ashriek} \rightarrow {\bf a} \subset U{\bf a}
    }
 We will study the properties of the following operator:
 @(align
   r.l.n
   `(""
-    @,f{\exp\left(\iota\circ\alpha\right)\;\in\; \mbox{Hom}\left(U{\bf a}^{\ashriek}, UC{\bf a}\right)}
+    @,f{\exp\left(\iota\circ\kappa\right)\;\in\; \mbox{Hom}\left(U{\bf a}^{\ashriek}, UC{\bf a}\right)}
     "")
   `(""
-    @,f{\iota\circ\alpha = c^A\iota\langle e_A\rangle = \iota\langle c\rangle}
+    @,f{\iota\circ\kappa = c^A\iota\langle e_A\rangle = \iota\langle c\rangle}
     "")
   )
 Since @f{\bold a} is quadratic-linear, @f{U{\bf a}^{\ashriek}} comes with the differential
@@ -886,7 +851,7 @@ it comes from @f{U{\bf a}} being inhomogenous
 
 
 The Chevalley-Eilenberg complex @f{C^{\bullet}({\bf a}, W)} with coefficients in @f{W} can be defined
-for any representation @f{\bf a}-module @f{W}. Consider the special case when @f{W} is a @f{\bf a}-differential
+for any @f{\bf a}-module @f{W}. Consider the special case when @f{W} is a @f{\bf a}-differential
 module @f{W}, @italic{i.e.}
 a representation of @f{(C{\bf a},d_{C{\bf a}})}. We will denote
 @f{{\cal L}_W\langle x\rangle}, @f{\iota_W\langle x\rangle} and @f{d^W_{C\bf a}} the elements of
@@ -896,32 +861,37 @@ of @f{C\bf a} and @f{d_{C\bf a}}.
 of @f{\bf a}, where @f{x\in\bf a} is represented by @f{{\cal L}_W\langle x\rangle}.)
 
 Consider the Lie algebra cochain complex (= Chevalley-Eilenberg complex)
-of @f{\bf a} (@bold{not}  @f{C{\bf a}}) with coefficients in
+of @f{\bf a}  with coefficients in
 @f{W}. The differential is defined as follows:
 @(align
   r.l.n
-  `(@,f{d_{\rm CE}\;\in\;}
-       @,f{\mbox{Hom}\left(U{\bf a}^{\ashriek},W\right)}
+  `(@,f{d_{\rm CE}\;:\;}
+       @,f{\mbox{Hom}\left(U{\bf a}^{\ashriek},W\right) \rightarrow \mbox{Hom}\left(U{\bf a}^{\ashriek},W\right)}
        "")
   `(@,f{d_{\rm CE} \;=\;}
-       @,f{\left(d_{U{\bf a}^{\ashriek}}\right)^* + {\cal L}_W\circ \alpha
+       @,f{\left(d_{U{\bf a}^{\ashriek}}\right)^* + {\cal L}_W\circ \kappa
                 \;=\;d_{\rm CE}^{(0)} + {\cal L}_W\langle c\rangle}
        "")
   `(@,f{d^{(0)}_{\rm CE} \;=\;}
        @,f{f^A_{BC} c^Bc^C{\partial\over\partial c^A}}
        "")
   )
-All this can be defined for any  @f{\bf a}-module @f{W}. But when @f{W} is also a @f{\bf a}-@bold{differential}
+All this can be defined for any  @f{\bf a}-module @f{W}. But when @f{W} is also an @f{\bf a}-@bold{differential}
 module (@italic{i.e.} a represenatation of @f{({C\bf a},d_{C\bf a})}), then @f{d_{\rm CE}} and @f{d_{\rm CE}^{(0)}} are related:
 @e[
    #:label "ExpIota"
    ]{
-     (d^W_{C\bf a} + d_{\rm CE})\exp\,\iota_W\circ\alpha
-     = \left(\exp\,\iota_W\circ\alpha \right)(d^W_{C\bf a} + d_{\rm CE}^{(0)})
+     (d^W_{C\bf a} + d_{\rm CE})\exp\,\iota_W\circ\kappa
+     = \left(\exp\,\iota_W\circ\kappa \right)(d^W_{C\bf a} + d_{\rm CE}^{(0)})
    }
-(where @f{\iota_W\circ\alpha = \iota_W\langle c\rangle}).
+where @f{\iota_W\circ\kappa = \iota_W\langle c\rangle}. Notice that Eq. (@ref{ExpIota}) resembles Eq. (@ref{DWithExp}).
+Indeed, both @f{\kappa} of Eq. (@ref{KoszulTwistingMorphism}) and @f{\alpha} of Eq. (@ref{NaturalTwistingMorphism})
+are maps from coalgebra to algebra, satisfying the Maurer-Cartan (MC) equation.
+But the way MC equation is satisfied is different,
+because  @f{d_{\rm CE}^{(0)}} acts in the coalgebra (in @f{Ua^{\ashriek}})
+while @f{d_{\Omega}} acts in the algebra (in @f{\Omega(A^{\ashriek})}).
 
-Moreover, since @f{W} and @f{U{\bf a}^{\ashriek}} are both @f{C\bf a}-modules,
+Since @f{W} and @f{U{\bf a}^{\ashriek}} are both @f{C\bf a}-modules,
 we can consider @f{\mbox{Hom}(U{\bf a}^{\ashriek}, W)} a @f{C\bf a}-module, as a @f{\mbox{Hom}} of
 two @f{C\bf a}-modules:
 @(align
@@ -940,14 +910,14 @@ two @f{C\bf a}-modules:
   r.l.n
   `(""
     @,f{\iota_{{\rm Hom}(U{\bf a}^{\ashriek}, W)}\langle x\rangle 
-              \left(\exp\,\iota_W\circ\alpha\right) \;=\;
-              \left(\exp\,\iota_W\circ\alpha\right)
+              \left(\exp\,\iota_W\circ\kappa\right) \;=\;
+              \left(\exp\,\iota_W\circ\kappa\right)
               \iota^{(0)}_{{\rm Hom}(U{\bf a}^{\ashriek}, W)}\langle x\rangle }
     "")
   `(""
     @,f{{\cal L}_{{\rm Hom}(U{\bf a}^{\ashriek}, W)}\langle x\rangle 
-                \left(\exp\,\iota_W\circ\alpha\right) \;=\;
-                \left(\exp\,\iota_W\circ\alpha\right)
+                \left(\exp\,\iota_W\circ\kappa\right) \;=\;
+                \left(\exp\,\iota_W\circ\kappa\right)
                 {\cal L}^{(0)}_{{\rm Hom}(U{\bf a}^{\ashriek}, W)}\langle x\rangle }
     "")
   `(@,elem[#:style 'no-break]{where @hspace[2]}
@@ -973,13 +943,13 @@ and
             \iota_{{\rm Hom}(U{\bf a}^{\ashriek}, W)},
             d^W_{C\bf a} + d_{\rm CE})}
 define on @f{{\rm Hom}(U{\bf a}^{\ashriek}, W)} the structure of a differential @f{\bf a}-module,
-and @f{\exp\,\iota_W\circ\alpha} intertwines them.
+and @f{\exp\,\iota_W\circ\kappa} intertwines them.
 
 @page[@elem{Integration measures from representations of @f{C\bf g} and @f{D\bf g}} #:tag "PDFsFromRepresentations" #:showtitle #t]
 
 @subpage[1 @elem{PDFs from representations of @f{C\bf g}} #:tag "sec:PDFsFromCg"]
 
-If @f{\bf g} acts on a manifold, then @f{C\bf g} acts in PDFs. Also, @f{C\bf g}
+If @f{\bf g} acts on a manifold, then @f{C\bf g} acts in PDFs. More generally, @f{C\bf g}
 acts in cochains of Chevalley-Eilenberg complexes of @f{\bf g}.
 
 @noindent
@@ -988,8 +958,7 @@ acts in cochains of Chevalley-Eilenberg complexes of @f{\bf g}.
 @subpage[2 @elem{Mapping to cochains} #:tag "sec:ToCochains"]
 
 @bold{Proposition @th-num{DtoQ}.}
-Let @f{\cal W} be a representation of @f{\bf g}, and
-@f{\intoper : W\rightarrow \cal W} an intertwiner of @f{\bf g}-modules:
+Let @f{\cal W} be a @f{\bf g}-module, and @f{\intoper : W\rightarrow \cal W} an intertwiner of @f{\bf g}-modules:
 @(align
   r.l.n
   `(@,f{\intoper\;:\;}
@@ -999,15 +968,15 @@ Let @f{\cal W} be a representation of @f{\bf g}, and
           @,f{\intoper\circ d^W_{C\bf g} =0}
           @,label{IdCgZero})
   )
-(We think of @f{\intoper} as some kind of an ``integration operation''.)
+(One may think of @f{\intoper} as an ``integration operation''.)
 Consider the subspace
 @e{
    \mbox{ker}\, d^{(0)}_{\rm CE} \subset \mbox{Hom}\left(U{\bf g}^{\ashriek},W\right)
    }
-Then operation @f{\intoper\circ e^{\iota_W\circ\alpha}} intertwines this subspace
+Then operation @f{\intoper\circ e^{\iota_W\circ\kappa}} intertwines this subspace
 with the  Chevalley-Eilenberg complex @f{C^{\bullet}({\bf g}, {\cal W})}:
 @e{
-   \intoper\circ e^{\iota_W\circ\alpha}\;:\;
+   \intoper\circ e^{\iota_W\circ\kappa}\;:\;
    (\mbox{ker} \,d^{(0)}_{\rm CE}\,,\, d^W_{C\bf g})
    \rightarrow
    (\mbox{Hom}\left(U{\bf g}^{\ashriek},{\cal W}\right)\,,\,d_{\rm CE})
@@ -1019,17 +988,17 @@ Therefore every @f{w\in W} defines an inhomogeneous Chevalley-Eilenberg cochain 
 @(align
   r.l.n
   `(""
-    @,f{\psi\langle w\rangle  = \intoper e^{\iota_W\circ \alpha} w}
+    @,f{\psi\langle w\rangle  = \intoper e^{\iota_W\circ \kappa} w}
     "")
   )
-The map    @f{\intoper\circ e^{\iota_W\circ\alpha}} intertwines the action of @f{C\bf g} on
+The map    @f{\intoper\circ e^{\iota_W\circ\kappa}} intertwines the action of @f{C\bf g} on
 @f{\mbox{ker} \,d^{(0)}_{\rm CE}} with the standard action of @f{C\bf g} in cochains with
 coefficients in @f{\cal W} --- the
 @f{({\cal L}^{(0)}_{{\rm Hom}(U{\bf b}^{\ashriek}, {\cal W})},
             \iota^{(0)}_{{\rm Hom}(U{\bf b}^{\ashriek}, {\cal W})})} of
 @bold{Proposition} @th-ref{BRSTofDifferentialModule}.
 (This action does not use @f{\iota^{\cal W}\langle x\rangle},
-      in fact there is no such thing as @f{\iota^{\cal W}\langle x\rangle}.
+      generally speaking there is no such thing as @f{\iota^{\cal W}\langle x\rangle}.
       Our @f{\cal W}, unlike @f{W}, is just a @f{\bf g}-module, not a differential @f{\bf g}-module.)
                                                           
 
@@ -1041,7 +1010,7 @@ In this case, every @f{w\in W} and a point @f{m\in M} defines a closed PDF on @f
 @e[#:label "DefOmegaWI"]{
    \Omega\langle w\rangle(g,dg)=\left(\intoper e^{-\iota_W\langle dgg^{-1}\rangle} w\right)(g.m)
    }
-We will be mostly interested in the cases when this PDF descends on the @f{G}-orbit of @f{m}. 
+We will be mostly interested in the cases when this PDF descends to the @f{G}-orbit of @f{m}. 
 
 For example, consider the case when @f{W} is the space of PDFs on @f{M} (the same @f{M})
 and @f{\intoper} is the restriction of a PDF on the zero section @f{M\subset \Pi TM}.
@@ -1516,6 +1485,82 @@ because unintegrated vertex operator does not contain derivatives @cite{Flores:2
 Notice that the PDF defined in Eq. (@ref{LocalOmega}) does not, generally, speaking, descend
 to the orbit of @f{L}. In computing the average, the integration variable is @f{g},  not  @f{gL}.
 However, the integral does not depend on the choice of @f{L} in the orbit.
+
+@appendix
+
+@page[@elem{Nilpotence of @f{d_{D\bf g}}} #:tag "AppendixNilpotence" #:showtitle #t]
+
+@subpage[1 @elem{Commutator of @f{D\bf g}} #:tag "sec:AppendixCommutatorDg"]
+
+The commutator of @f{D\bf g} was defined in 〚@seclink["paragraph:CommDg"]{@secref{paragraph:CommDg}}〛.
+In particular, when considering a commutator of an element of  @f{\bf g} and an element of @f{\mbox{FreeLie}\left(s^{-1} \overline{A^{\ashriek}}\right)},
+the following description is useful.
+Consider the @f{UC\bf g} -- the universal enveloping algebra of @f{C\bf g}, and its
+dual coalgebra @f{UC{\bf g}^{\ashriek}}:
+@e{
+   UC{\bf g}^{\ashriek} = T^c\left(s({\bf g} \oplus s{\bf g})\right)
+   }
+Consider the projector @f{p}:
+@(align
+  r.l.n
+  `(@,f{p\;:\;}
+       @,f{UC{\bf g}^{\ashriek}\rightarrow s{\bf g}\oplus A^{\ashriek}}
+       @,label{ProjectorP})
+  )
+which is identity on @f{s{\bf g}\oplus A^{\ashriek}\;\subset\;T^c\left(s({\bf g} \oplus s{\bf g})\right)}
+and zero on all tensors of rank @f{\geq 2} containing at least one @f{sx \in s{\bf g}}.
+This induces a map from @f{\Omega^1 \left(UC{\bf g}^{\ashriek}\right)} to @f{D\bf g} which we also
+denote @f{p}:
+@e[#:label "LiftedProjectorP"]{
+   \Omega^1 \left(UC{\bf g}^{\ashriek}\right) =
+   s^{-1}UC{\bf g}^{\ashriek}
+   \stackrel{p}{\longrightarrow}
+   {\bf g}\oplus s^{-1}A^{\ashriek} \subset D{\bf g}
+   }
+For any Lie superalgebra @f{\bf a} let @f{\gamma} denote the commutator map:
+@(align
+  r.l.n
+  `(""
+    @,f{\gamma\;:\; {\bf a}\otimes {\bf a} \rightarrow {\bf a}}
+    "")
+  `(""
+    @,f{\gamma(v\otimes w) = [v,w]}
+    "")
+  )
+In case of @f{{\bf a} = D{\bf g}}, we can consider @f{D{\bf g} \otimes D{\bf g}} as
+a subspace in @f{\Omega^2(UC{\bf g}^{\ashriek})} using the projector @f{p} of Eq. (@ref{LiftedProjectorP}):
+@e{
+   p\otimes p \;:\; \Omega^2(UC{\bf g}^{\ashriek}) \rightarrow D{\bf g} \otimes D{\bf g}
+   }
+Then, the commutator on @f{D{\bf g}} satisfies:
+@(align
+  r.l.n
+  `(""
+    @,f{
+        \gamma\;(p\otimes p)\; d_{\Omega(UC{\bf g}^{\ashriek})} \;s^{-1}b \;=\; - s^{-1} d_{UC{\bf g}^{\ashriek}}b
+        }
+    "")
+  `(@,elem[#:style 'no-break]{where@hspace[1]}
+          @,v+[4 @f{b\;=\;s\xi\otimes a + (-)^{(\xi+1)a} a\otimes s\xi\;\in\;UC{\bf g}^{\ashriek}}]
+          "")
+  `(""
+    @,f{\xi\in {\bf g}\;,\quad a\in A^{\ashriek}}
+    "")
+  )
+
+@subpage[1 @elem{Nilpotence of @f{d_{D\bf g}}} #:tag "sec:AppendixNilpotence"]
+
+We will now prove that @f{d'} anticommutes with @f{d_{\Omega}}:
+@e[#:label "AppendixDsAnticommute"]{
+   d'd_{\Omega} + d_{\Omega} d' = 0
+   }
+When @f{b\in \left(A^{\ashriek}\right)^{(\geq 2)}},
+by definition @f{d' s^{-1}b =0}. We must therefore check that @f{d' d_{\Omega} s^{-1}b=0}:
+@e{
+   d' d_{\Omega} s^{-1}b = \gamma (p\otimes p) d_{\Omega(UC{\bf g}^{\ashriek})} s^{-1} d_{C\bf g} b =
+   - s^{-1} d_{UC{\bf g}^{\ashriek}}d_{C\bf g}b =
+   s^{-1} d_{C\bf g} d_{UC{\bf g}^{\ashriek}} b = 0
+   }
 
 
 
