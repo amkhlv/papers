@@ -1,8 +1,8 @@
 (module defs racket
 
   (require (for-syntax racket/base bystroTeX/slides_for-syntax racket/syntax))
-  (require racket scribble/core scribble/base scribble/html-properties)
-  (require bystroTeX/common bystroTeX/slides)
+  (require racket scribble/core scribble/base scribble/html-properties scribble/decode)
+  (require bystroTeX/common bystroTeX/slides truques/truques)
 
   ;; Here the basic syntax can be adjusted:
   (provide bystro-def-formula)
@@ -68,54 +68,102 @@
     (elemref label (list (exercise-number label))))
   (provide noindent)
   (define noindent "")
+
   (provide comment)
   (define-syntax (comment stx)
     (syntax-case stx ()
       [(_ x ...)
        (with-syntax ([bc (format-id stx "bystro-conf")])
-         #'(let ([a (bystro-bg 240 240 255)]
-                 [s1 (set-bystro-formula-size! bc (- (bystro-formula-size bc) 3))]
-                 [b (nested 
-                     #:style (style "comment" 
-                               (list (make-attributes '((style . "background-color:rgb(240,240,255);")))))
-                     x ...)]
-                 [s2 (set-bystro-formula-size! bc (+ (bystro-formula-size bc) 3))]
-                 [c (bystro-bg 255 255 255)])
+         #'(let* ([oldbg (bystro-formula-bg-color bc)]
+                  [a (bystro-bg 240 240 255)]
+                  [s1 (set-bystro-formula-size! bc (- (bystro-formula-size bc) 3))]
+                  [b (nested 
+                      #:style (style "comment" 
+                                     (list (make-attributes '((style . "background-color:rgb(240,240,255);")))))
+                      x ...)]
+                  [s2 (set-bystro-formula-size! bc (+ (bystro-formula-size bc) 3))]
+                  [c (apply bystro-bg oldbg)])
              b))]))
   (provide short-intro)
   (define-syntax (short-intro stx)
     (syntax-case stx ()
       [(_ x ...)
-       #'(let ([a (bystro-bg 240 255 240)]
-               [b (nested 
-                   #:style (style "greenbox" 
-                             (list (make-attributes '((style . "background-color:rgb(240,255,240);")))))
-                   x ...)]
-               [c (bystro-bg 255 255 255)])
-           b)]))
+       (with-syntax ([bc (format-id stx "bystro-conf")])
+         #'(let* ([oldbg (bystro-formula-bg-color bc)]
+                  [a (bystro-bg 240 255 240)]
+                  [b (nested 
+                      #:style (style "greenbox" 
+                                     (list (make-attributes '((style . "background-color:rgb(240,255,240);")))))
+                      x ...)]
+                  [c (apply bystro-bg oldbg)])
+             b))]))
   (provide summary)
   (define-syntax (summary stx)
     (syntax-case stx ()
       [(_ x ...)
-       #'(let ([a (bystro-bg 176 224 230)]
-               [b (nested 
-                   #:style (style "bystro-summary" 
-                             (list (make-attributes '((style . "background-color:PowderBlue;")))))
-                   x ...)]
-               [c (bystro-bg 255 255 255)])
-           b)]))
+       (with-syntax ([bc (format-id stx "bystro-conf")])
+         #'(let* ([oldbg (bystro-formula-bg-color bc)]
+                  [a (bystro-bg 255 255 255)]
+                  [b (nested
+                      #:style (style "bystro-summary" '())
+                      x ...)]
+                  [c (apply bystro-bg oldbg)])
+             b))]))
   (provide quotation)
   (define-syntax (quotation stx)
     (syntax-case stx ()
       [(_ x ...)
-       #'(let ([a (bystro-bg 253 237 236)]
-               [b (nested 
-                   #:style (style "bystro-quotation" 
-                             (list (make-attributes '((style . "background-color:rgb(253,237,236);")))))
-                   x ...)]
-               [c (bystro-bg 255 255 255)])
-           b)]))
+       (with-syntax ([bc (format-id stx "bystro-conf")])
+         #'(let* ([oldbg (bystro-formula-bg-color bc)]
+                  [a (bystro-bg 253 237 236)]
+                  [b (nested 
+                      #:style (style "bystro-quotation" 
+                                     (list (make-attributes '((style . "background-color:rgb(253,237,236);")))))
+                      x ...)]
+                  [c (apply bystro-bg oldbg)])
+             b))]))
   (provide appendix)
   (define appendix (elem #:style (style "bystro-end-of-main-text" '()) '()))
+  (provide bystro-abstract)
+  (define (bystro-abstract . xs)
+    (nested
+     #:style (style "bystro-abstract" '())
+     xs))
+  (provide bystro-authors)
+  (define (bystro-authors . xs)
+    (nested
+     #:style (style "bystro-authors" '())
+     xs))
+  (provide bystro-margin-note)
+  (define bystro-margin-note margin-note)
+  (provide bystro-scrbl-only)
+  (define-syntax (bystro-scrbl-only stx) (syntax-case stx () [(_ x ...) #'(begin x ...)]))
+  (provide bystro-latex-only)
+  (define (bystro-latex-only . xs) (elem '()))
+  (provide marg)
+  (define
+    (marg #:scale s #:dir d #:filter f #:build-for-local [build-for-local #t])
+    (bystro-margin-note
+     (if build-for-local
+         (autolist-svgs
+          #:scale s
+          #:dir d
+          #:ncols 1
+          #:showdir #f
+          #:filter f
+          )
+         (autolist
+          #:exts '(svg)
+          #:dir d
+          #:filter f
+          #:output (lambda (x)
+                     `(,(hyperlink
+                         (path->string x)
+                         (image
+                          #:scale s
+                          (find-relative-path
+                           (current-directory)
+                           (path->complete-path (build-path d x))))
+                         )))))))
 
   )

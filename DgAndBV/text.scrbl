@@ -9,7 +9,7 @@
            "text/formulas.sqlite"  ; name for the database
            "text" ; directory where to store image files of formulas
            25  ; formula size
-           (list 255 255 255) ; formula background color
+           (list #xfd #xf5 #xe6) ; formula background color
            (list 0 0 0) ; formula foreground color
            2   ; automatic alignment adjustment
            0   ; manual alignment adjustment
@@ -17,14 +17,23 @@
 @(define singlepage-mode #f)
 @(bystro-def-formula "formula-enormula-humongula!")
 
-@(define (bystro-bg0) (bystro-bg 255 255 255))
+@(define bystro-bg0 bystro-reset-colors)
 
 @(require bystroTeX/bibtex)
+
+@bystro-source[]
 
 @title[#:style '(no-toc no-sidebar)]{DGLA Dg and BV formalism}
 
 
-
+@bystro-abstract{
+                   Differrential Graded Lie Algebra Dg was previously introduced in the context of current algebras.
+  We show that under some conditions, the problem of constructing equivariantly closed form
+  from closed invariant form is reduces to construction of a representation of Dg.
+  This includes equivariant BV formalism. In particular, an analogue of intertwiner between
+  Weil and Cartan models allows to clarify the general relation between integrated and unintegrated
+  operators in string worldsheet theory.
+  }
 
 @bystro-toc[]
 
@@ -41,18 +50,16 @@ odd symplectic supermanifolds. In this formalism the path integral is interprete
 an integral of a density of weight @f{1/2} over a Lagrangian submanifold. It turns out that
 this ``standard'' formulation is not sufficient to describe string worldsheet theory.
 One has to also consider integration over @bold{families} of Lagrangian submanifolds.
-Indeed, the idea of @cite{Schwarz:2000ct} was to interpret integration over the worldsheet metrics
+Indeed, the idea of @cite{Schwarz:2000ct},@cite{Mikhailov:2016myt},@cite{Mikhailov:2016rkp} was to interpret integration over the worldsheet metrics
 as a particular case of integration over the space of gauge fixing conditions.
 Varying the worldsheet metric is a particular case of varying the Lagrangian submanifold.
 Taking into account the worldsheet diffeomorphism invariance requires an equivariant
 version of this integration procedure.
-(In a sense, worldsheet metric is not necessarily a preferred object. Varying the worldsheet
+(In a sense, worldsheet metric is not necessarily a preferred, or ``special'', object. Varying the worldsheet
     metric is just one way to build an integration cycle, there are others. The worldsheet
     diffeomorphisms, however, @bold{are} special.)
                                            
-
-This idea was developed in @cite{Mikhailov:2016myt}
-and @cite{Mikhailov:2016rkp}. The construction of equivariant form
+The construction of equivariant form
 involves a map of some differential graded Lie algebra (DGLA)  @f{D\bf g} into the algebra of functions
 on the BV phase space of the string sigma-model.
 To the best of our knowledge, @f{D\bf g} was first introduced, or at least clearly presented,
@@ -71,7 +78,7 @@ We will now briefly outline these constructions, and the results of the present 
 @subpage[1 "The cone of Lie superalgebra" #:tag "sec:IntroCone"]
      
 For every Lie superalgebra @f{\bf a}, we can define a
-Differential Graded Lie superalgebra @f{C\bf a} (the ``cone'' of @f{\bf a}) as follows.
+DGLA @f{C\bf a} (the ``cone'' of @f{\bf a}) as follows.
 We consider vector superspace @f{\bf a} as a graded vector space, such
 that the grade of all elements is zero. Then, we denote @f{s{\bf a}} the vector space @f{\bf a} with
 flipped statistics  at degree @f{-1}.
@@ -81,7 +88,8 @@ Consider a graded vector space:
 @e{
    C{\bf a} = {\bf a}\oplus s{\bf a}
    }
-where @f{\bf a} is at grade zero, and @f{s{\bf a}} at grade @f{-1}. (The letter @f{s} means ``suspension''.)
+where @f{\bf a} is at grade zero, and @f{s{\bf a}} at grade @f{-1}.
+(The letter @f{s} means ``suspension'', the standard terminology in linear algebra.)
 
 The commutator is defined as follows. The commutator of two elements of @f{{\bf a}\subset {\bf a}\oplus s{\bf a}}
 is the commutator of @f{\bf a}, the commutator of two elements of @f{s\bf a} is zero,
@@ -102,11 +110,14 @@ We have:
   r.l.n
   `(@,f{d \iota\langle x\rangle \;=\;} @,f{{\cal L}\langle x\rangle} @,label{DefCone})
   `(@,f{d {\cal L}\langle x\rangle \;=\;} @,f{0} "")
+  `(@,f{[{\cal L}\langle x\rangle, {\cal L}\langle y\rangle] \;=\;}
+       @,f{{\cal L}\langle [x,y]\rangle}
+       "")
   )
           
 
 
-@subpage[1 @f{D\bf g} #:tag "sec:IntroDg"]
+@subpage[1 @elem{@f{D\bf g}} #:tag "sec:IntroDg"]
 
 The definition of @f{D\bf g} is similar to the definition of @f{C\bf g}. Essentially, we replace
 the commutative ideal  @f{s{\bf g}\subset C{\bf g}} with a free Lie superalgebra of the linear space
@@ -124,7 +135,7 @@ In particular, if @f{i(x)} is a linear function of @f{x}, then @f{D\bf g} become
 @f{i(x)} becomes @f{\iota\langle x \rangle} and @f{l\langle x\rangle} becomes @f{{\cal L}\langle x \rangle}.
 In general, @f{i(x)} is a nonlinear function of @f{x} (but @f{l\langle x\rangle} remains linear).
 In 〚@seclink["DefDg"]{@secref{DefDg}}〛 we explain the details of the construction, and why it is
-very natural. We slightly generalize it, by allowing @f{\bf g} to be  a  Lie superalgebra
+natural. We slightly generalize it, by allowing @f{\bf g} to be  a  Lie superalgebra
 (while in @cite{Alekseev:2010gr} it was a Lie algebra).
 
 
@@ -153,7 +164,7 @@ In the BV approach to string worldsheet theory,  worldsheet diffeomorphisms are 
 and therefore   @f{\Omega} is @f{\bf g}-invariant. We are interested in constructing the @f{{\bf g}}-equivariant version of @f{\Omega}.
 Generally speaking, there is no good algorithm for constructing an equivariant PDF out of an invariant PDF.
 But in our case, since @f{\Omega} satisfies Eq. (@ref{SpecialPropertyOfOmega}), we can reduce the construction
-of equvariant form to the construction of a an embedding  @f{{D\bf g}\rightarrow {\bf a}}
+of equvariant form to the construction of an embedding  @f{{D\bf g}\rightarrow {\bf a}}
 --- see 〚@seclink["AnsatzForEquivariantForm"]{@secref{AnsatzForEquivariantForm}}〛.
 
 
@@ -267,10 +278,10 @@ of @f{T^a(V)} consisting of symmetric tensors.
 (To define the structure of algebra, we notice that this subspace is isomorphic to the
     factorspace by @bold{quadratiic relations} of @f{A}, which are antisymmetric tensors in @f{V\otimes V}.)
 
-Then, the dual coalgebra @f{A^{\ashriek}}, by definition, the subspace of  symmetric tensors the tensor
+Then, the dual coalgebra @f{A^{\ashriek}}, by definition, the subspace of @bold{symmetric tensors} in the tensor
 coalgebra:
 @e{
-   T^c(sV) = \bigoplus_n (sV)^{\otimes n}
+   A^{\ashriek} \subset T^c(sV) = \bigoplus_n (sV)^{\otimes n}
    }
 (Here the upper index @f{c} means that we consider it as a coalgebra.)
 
@@ -307,17 +318,19 @@ then @f{A^{\ashriek}} is the coalgebra of symmetric tensors in @f{sV}.
 
 @subpage[2 @elem{Case of @f{V =s{\bf g}}} #:tag "sec:DefA"]
 
-Let @f{\bf g} be a Lie superalgebra. We consider it a graded Lie superalgebra, with all elements
+Let @f{\bf g} be a Lie superalgebra. We consider it as a graded Lie superalgebra, with all elements
 having grade zero. Let us apply the construction of
 〚@seclink["sec:DualAlgebraOfFunctions"]{@secref{sec:DualAlgebraOfFunctions}}〛
 to @f{V =s{\bf g}}.
 
-
-Consider its quadratic dual coalgebra:
-@e{
-   A^{\ashriek} \subset T^c(s^2{\bf g})
-   }
-At this point, we consider @f{s{\bf g}} only as a supercommutative algebra.
+Let @f{A} be the free commutative superalgebra generated by @f{V}, and @f{A^{\ashriek}} its Koszul dual
+coalgebra:
+@(align
+  r.l.n
+  `(@,f{A\;\subset\;} @,f{T^a(s{\bf g})} "")
+  `(@,f{A^{\ashriek} \;\subset\;}  @,f{T^c(s^2{\bf g})} "")
+  )
+At this point, we consider @f{s{\bf g}} only as a linear superspace.
 The Lie algebra structure on @f{\bf g} is forgotten. 
 
 Let us consider the cobar construction of @f{A^{\ashriek}}:
@@ -339,32 +352,37 @@ Consider the natural twisting morphism
        @,f{A^{\ashriek} \rightarrow \Omega\left( A^{\ashriek}\right)}
        @,label{NaturalTwistingMorphism})
   )
-which is denoted @f{\iota} in @cite{LodayVallette}, but we reserve @f{\iota} for contraction of a vector
-field into a form.
+(which is denoted @f{\iota} in Chapter 2 of @cite{LodayVallette},
+       but we reserve @f{\iota} for contraction of a vector field into a form).
 Its image belongs to @f{s^{-1}  A^{\ashriek}\subset \mbox{FreeLie}\left(s^{-1}  \overline{A^{\ashriek}}\right)}. It satisfies
 the Maurer-Cartan equation;
 using the notations of Chapter 2 of @cite{LodayVallette}:
 @e[#:label "MCAlpha"]{
    d_{\Omega} \alpha + \alpha * \alpha = 0
    }
-where @f{d_{\Omega}} is the differential on @f{\Omega\left( A^{\ashriek}\right)} induced by
-the coalgebra structure on @f{A^{\ashriek}}. Since @f{A} is a supercommutative algebra, @f{\alpha * \alpha} actually belongs to a subspace:
+where @f{d_{\Omega}} is the differential on @f{\Omega\left( A^{\ashriek}\right)} induced by the coalgebra structure on @f{A^{\ashriek}}.
+Since @f{A} is a supercommutative algebra, @f{d_{\Omega}\left(s^{-1}  \overline{A^{\ashriek}}\right)} actually
+belongs to the subspace:
 @e{
-   \mbox{Hom}\left( A^{\ashriek}\,,\,\mbox{FreeLie}\left(s^{-1}  \overline{A^{\ashriek}}\right)\right)
+   \left(s^{-1}  \overline{A^{\ashriek}} \right)\wedge \left(s^{-1}  \overline{A^{\ashriek}} \right)
    \subset
-   \mbox{Hom}\left( A^{\ashriek}\,,\, \Omega\left( A^{\ashriek}\right)\right)
+   \left(s^{-1}  \overline{A^{\ashriek}} \right)\otimes \left(s^{-1}  \overline{A^{\ashriek}} \right)
+   }
+This implies that @f{d_{\Omega}} preserves the subspace:
+@e{
+   \mbox{FreeLie}\left(s^{-1}  \overline{A^{\ashriek}}\right)
+   \subset
+   \Omega\left( A^{\ashriek}\right)
    }
 (Indeed, the @f{H^0} of the cobar complex is @f{A}, and @f{A} is supercommutative;
          @f{d_{\Omega}} ``kills the commutator''.)
 This means that we may write @f{{1\over 2}[\alpha\stackrel{*}{,}\alpha]} instead of @f{\alpha *\alpha}.
 
-The differential @f{d_{\Omega}} preserves the subspace
-@f{\mbox{FreeLie}\left(s^{-1}  \overline{A^{\ashriek}}\right)\subset \Omega(A^{\ashriek})}.
-Therefore, @f{\mbox{FreeLie}\left(s^{-1}  \overline{A^{\ashriek}}\right)} with @f{d_{\Omega}} is a differential graded Lie superalgebra.
+To summarize, @f{\mbox{FreeLie}\left(s^{-1}  \overline{A^{\ashriek}}\right)} with @f{d_{\Omega}} is a differential graded Lie superalgebra.
 
 @subpage[2 @elem{Definition of @f{D\bf g}} #:tag "subsec:Dg"]
 
-Let us consider a larger algebra:
+Let us consider a larger space:
 @e[#:label "SemidirectSum"]{
    D{\bf g} \;=\; {\bf g} \stackrel{\rightarrow}{\oplus} \mbox{FreeLie}\left(s^{-1}  \overline{A^{\ashriek}}\right)
    }
@@ -458,9 +476,7 @@ and its universal enveloping algebra @f{U{\cal C}}. The Maurer-Cartan Eq. (@ref{
         }
     @,label{DWithExp}]
   )
-This is an equation in the completion of @f{\mbox{Hom}\left( A^{\ashriek}\,,\,U{\cal C}\right)}, and @f{\exp(x)} is understood as
-@f{1 + x + {1\over 2} x*x + \ldots}.
-
+This is an equation in the completion of @f{\mbox{Hom}\left( A^{\ashriek}\,,\,U{\cal C}\right)}.
 Let @f{M} be some supermanifold, and @f{\mbox{Vect}(M)} the algebra of vector fields on it.
 Suppose that we are given a map of linear spaces:
 @e{
@@ -486,7 +502,7 @@ for all @f{\omega \in \mbox{Hom}( A^{\ashriek},\mbox{Fun}(\Pi T M))}.
 
 
 
-@subpage[2 @elem{Simpler notations} #:tag "sec:FunctionsOfCurvature"]
+@subpage[1 @elem{Simpler notations} #:tag "sec:FunctionsOfCurvature"]
 
 For us @f{V = s{\bf g}}, and @f{A^{\ashriek}} is the coalgebra
 of symmetric tensors in @f{s^2\bf g}. Therefore, the space @f{\mbox{Hom}\left(A^{\ashriek},L\right)}
@@ -540,7 +556,7 @@ To agree with @cite{Alekseev:2010gr}, we will denote:
   )
 Here the notation @f{l\langle F\rangle} agrees with Eq. (@ref{EmbeddingL}).
 
-@subpage[2 "Ghost number" #:tag "sec:GhostNumber"]
+@subpage[1 "Ghost number" #:tag "sec:GhostNumber"]
 
 In our notations, if @f{X} has ghost number @f{n} then @f{sX} has ghost number @f{n-1}.
 In other words, @f{s} @bold{lowers} ghost number. In particular, the cone of the Lie superalgebra
@@ -556,6 +572,31 @@ where @f{c^{\star}}
 is the BV antifield for ghost and @f{\{\_,\_\}} the odd Poisson bracket. As a mnemonic rule,
 @f{i_{a_1\ldots a_n}} has the same ghost number as @f{\{(c^{\star})^n,\_\}}. Elements of
 @f{{\bf g}} (the first summand in @f{{\bf g} \stackrel{\rightarrow}{\oplus} \mbox{FreeLie}\left(s^{-1}  \overline{A^{\ashriek}}\right)}) all have ghost number zero.
+
+
+@subpage[1 @elem{Are @f{F^a} Faddev-Popov ghosts?} #:tag "AsFaddeevPopov"]
+
+As an ideal in @f{C\bf g}, the @f{s\bf g} is Lie superalgebra with zero commutator. We can think of
+@f{F^a} as Faddeev-Popov ghosts of the BRST complex of @f{s\bf g}. Since the commutator is zero,
+the BRST differential annihilates @f{F^a}.
+
+But when we consider @f{D\bf g} and not @f{C\bf g}, the commutator @f{[i_a,i_b]} is nonzero;
+we consider the free Lie superalgebra generated by @f{i_a}. We might have introduced new
+Faddeev-Popov ghost for nested commutators, and the corresponding BRST differential.
+But this is not how the construction goes. 
+Instead, we introduce new generators, such as @f{i_{ab}}, and the differential @f{d_{\Omega}}
+such that @f{di_{ab} = [i_a,i_b]} @italic{etc}. This differential @f{d_{\Omega}} acts on elements
+of the Lie superalgebra, not on Faddeev-Popov ghosts.
+This is @bold{not} the Faddeev-Popov construction. Notice that @f{i_{a_1\ldots a_n}} gets contracted
+with products of @f{F^a}. In this sense, we may say that we replace the Faddeev-Popov
+@f{c^A t_A} with nonlinear functions of @f{c}. We replace:
+@e{
+   c^A t_A + {1\over 2} f_{AB}^C c^A c^B{\partial \over \partial c^C}
+   }
+with:
+@e{
+   \sum F^{a_1}\cdots F^{a_n} i_{a_1\cdots a_n} + d_{\Omega}
+   }
 
 
 @page[@elem{@f{D'{\bf g}}} #:tag "ExtensionOfDg" #:showtitle #t]
@@ -612,6 +653,8 @@ We will show that under certain conditions this substitution solves Eq. (@ref{Ca
 
 
 @page[@elem{@f{CD\bf g}} #:tag "SpecialCocycles" #:showtitle #t]
+
+@bystro-local-toc[]
 
 @subpage[1 @elem{@f{D'\bf g}-differential modules} #:tag "DGDifferentialModules"]
 
@@ -680,9 +723,9 @@ Then Eq. (@ref{DMwithExpIota}) implies
    }
 Let us consider Eq. (@ref{CartanWithEIota}) in the special case when @f{\omega} is closed:
 @e{
-   d\omega = 0
+   d_M \omega = 0
    }
-Consider a linear subspace @f{{\cal X}_{\omega}\subset \mbox{Vect}(M)} consisting of all vectors @f{v} such that exits
+Consider a linear subspace @f{{\cal X}_{\omega}\subset \mbox{Vect}(M)} consisting of all vectors @f{v} such that exists
 some other vector @f{d_{\omega}v\in {\cal X}_{\omega}} satisfying: 
 @e[#:label "DefDOmega"]{
    - d\iota\langle v\rangle \omega = \iota\langle d_{\{\omega\}} v\rangle\omega
@@ -889,7 +932,7 @@ Indeed, both @f{\kappa} of Eq. (@ref{KoszulTwistingMorphism}) and @f{\alpha} of 
 are maps from coalgebra to algebra, satisfying the Maurer-Cartan (MC) equation.
 But the way MC equation is satisfied is different,
 because  @f{d_{\rm CE}^{(0)}} acts in the coalgebra (in @f{Ua^{\ashriek}})
-while @f{d_{\Omega}} acts in the algebra (in @f{\Omega(A^{\ashriek})}).
+while @f{d_{\Omega}} acts in the algebra (in @f{\Omega(A^{\ashriek})}), see 〚@seclink["AsFaddeevPopov"]{@secref{AsFaddeevPopov}}〛.
 
 Since @f{W} and @f{U{\bf a}^{\ashriek}} are both @f{C\bf a}-modules,
 we can consider @f{\mbox{Hom}(U{\bf a}^{\ashriek}, W)} a @f{C\bf a}-module, as a @f{\mbox{Hom}} of
@@ -946,6 +989,8 @@ define on @f{{\rm Hom}(U{\bf a}^{\ashriek}, W)} the structure of a differential 
 and @f{\exp\,\iota_W\circ\kappa} intertwines them.
 
 @page[@elem{Integration measures from representations of @f{C\bf g} and @f{D\bf g}} #:tag "PDFsFromRepresentations" #:showtitle #t]
+
+@bystro-local-toc[]
 
 @subpage[1 @elem{PDFs from representations of @f{C\bf g}} #:tag "sec:PDFsFromCg"]
 
@@ -1044,8 +1089,13 @@ where @f{\Phi} is:
     @,f{A_{\tau}d\tau = \left.{d\over du}\right|_{u=0}i(u \, d\tau \, c   + (\tau - \tau^2)c^2)}
     "")
   )
-Therefore, when @f{W} is a representation of @f{D\bf g}, we have an analogue of Eq. (@ref{DefOmegaWI}),
-where @f{\intoper} should now satisfy @f{\intoper\circ d_{D\bf g}^W = 0}:
+Suppose that @f{W} is a representation of @f{D\bf g} with a differential @f{d^W_{D\bf g}} compatible
+wiith @f{d_{D\bf g}}, and @f{\cal W} a representation of @f{\bf g}. Suppose that there
+is an ``integration operation'' @f{\intoper} satisfying the analogue of (@ref{IdCgZero}):
+@e{
+   \intoper\circ d_{D\bf g}^W = 0
+   }
+Then the following analogue of Eq. (@ref{DefOmegaWI}) holds:
 @(align
   r.l.n
   `(""
@@ -1485,6 +1535,137 @@ because unintegrated vertex operator does not contain derivatives @cite{Flores:2
 Notice that the PDF defined in Eq. (@ref{LocalOmega}) does not, generally, speaking, descend
 to the orbit of @f{L}. In computing the average, the integration variable is @f{g},  not  @f{gL}.
 However, the integral does not depend on the choice of @f{L} in the orbit.
+
+@page[@elem{Use of ``extended'' BV phase space} #:tag "UseOfExtendedBVSpace" #:showtitle #t]
+
+Let @f{M} denote the BV phase space.
+In ``physics notations'':
+@e{
+   \rho_{1/2} = e^{S_{\rm BV}}
+   }
+Given an embedding @f{r\;:\;D{\bf g}\rightarrow {\bf a}}, each @f{\xi\in {\bf g}} gives
+an ``exact symmetry'' @f{r\langle l\langle\xi\rangle\rangle}.
+Let @f{G} be the corresponding group, @f{{\bf g} = \mbox{Lie}\,G}.
+Let us promote @f{M} to  the ``extended'' BV phase space, in the following way:
+@e[#:label "DoubleBRST"]{
+   \widehat{M} = M \times \Pi T^* \left({\Pi T \Pi T G}\right)
+   }
+The space @f{\Pi T \Pi T G} can be understood as the space of maps @f{{\bf R}^{0|2} \rightarrow G}.
+Let @f{\zeta} and @f{\epsilon} be the coordinates of @f{{\bf R}^{0|2}}. We define the
+cohomological vector field @f{d = \partial_{\epsilon} + \partial_{\zeta}}. The ``denominator'' @f{\Pi TG} in Eq. (@ref{DoubleBRST})
+consists of maps constant in @f{\epsilon} (@italic{i.e.} @f{g(\epsilon,\zeta)} function of @f{\zeta} only).
+
+Consider the coset space
+@f{\Pi T \Pi T G\over \Pi TG} where the ``denominator'' @f{\Pi TG} in Eq. (@ref{DoubleBRST})
+consists of maps constant in @f{\epsilon} (@italic{i.e.} @f{g(\epsilon,\zeta)} function of @f{\zeta} only).
+The algebra of functions on this coset space, with the differential  @f{d = \partial_{\epsilon} + \partial_{\zeta}}
+is the Weil algebra of @f{\bf g}:
+@(align
+  r.l.n
+  `(@,f{A\;=\;} @,f{\partial_{\epsilon}gg^{-1}} "")
+  `(@,f{F\;=\;} @,f{\partial_{\zeta}(\partial_{\epsilon}gg^{-1})} "")
+  )
+We define the ``extended Master Action'' as follows:
+@e[#:label "ExtendedMasterAction"]{
+   \widehat{S}_{\rm BV} =
+   S_{\rm BV} + \underline{r\langle l\langle A\rangle\rangle} + \underline{r\langle i(F)\rangle}
+   + \underline{d}
+   }
+Here @f{\underline{d}\in\mbox{Fun}(\Pi T^*(\Pi T\Pi TG))} is the BV Hamiltonian
+of @f{d = \partial_{\epsilon} + \partial_{\zeta}},
+in other words:
+@e{
+   \{\underline{d},F\} = [A,F]\,,\;
+   \{\underline{d},A\} = {1\over 2}[A,A] + F
+   }
+It satisfies the Master Equation @f{\{\widehat{S}_{\rm BV},\widehat{S}_{\rm BV}\} = 0}. We assume that there is no anomaly,
+and @f{e^{\widehat{S}_{\rm BV}}} satisfies the Quantum Master Equation. Essentially,
+@e{
+   e^{\widehat{S}_{\rm BV}} = e^{\underline{d_{\rm tot}}}
+   }
+where @f{d_{\rm tot}} is the differential of the Weil complex @f{W_{\bf g}\otimes (\mbox{half-densities on }M)}.
+Notice that:
+@e[#:label "EquivariantHalfDensityAsExpOfD"]{
+   \exp\left(
+             S_{\rm BV} + \underline{r\langle l\langle A\rangle\rangle} + \underline{r\langle i(F)\rangle}
+             \right)
+   \quad\in\quad
+   \left(W_{\bf g}\otimes (\mbox{half-densities on }M)\right)^{C{\bf g}}
+   }
+--- the @f{C{\bf g}}-invariant subspace. Indeed the invariance under @f{\iota\langle x \rangle}, @f{x\in {\bf g}}, follows from
+the fact that the dependence on @f{A} is through the exponential factor
+@f{\exp\left(\underline{r\langle l\langle A\rangle\rangle}\right)}.
+Conceptually, the construction of equivariant half-density is very straightforward.
+Given a representation @f{D{\bf g} \rightarrow {\bf a}}, we consider the BV Hamiltonian
+of the Weil differential in  @f{W_{\bf g}\otimes (\mbox{half-densities on }M)}, and take its
+exponential. Notice that the differential
+@f{
+   \{S_{\rm BV},\_\} + r\langle l\langle A\rangle\rangle + r\langle i(F)\rangle + d_W
+   }
+is in the Cartan model, while the equivariant half-density of  Eq. (@ref{EquivariantHalfDensityAsExpOfD})
+is in the Weil model.
+
+We observe:
+@(align
+  r.l.n
+  `(""
+    @,f{P\exp\left(\left\{ \int_0^1 {\cal A}_{\tau} d\tau\,,\_ \right\}\right) \widehat{S}_{\rm BV}\;=\;
+                  S_{\rm BV} +  \underline{d}}
+    @,label{ExtendedMasterActionSplit})
+  `(@,elem[#:style 'no-break]{where@hspace[2]}
+          @,f{{\cal A}_{\tau}d\tau =
+                      \left.{d\over du}\right|_{u=0}
+                      \underline{
+                                 r\left\langle\;
+                                 i\left(
+                                        u d\tau\, A + \tau F + (\tau^2-\tau)[A,A]
+                                        \right)
+                                 \;\right\rangle}}
+          "")
+  )
+In other words, this canonical transformation brings the action to the ``direct sum''
+of @f{S_{\rm BV}} (a function on @f{M_{\rm BV}}) and @f{\underline{d}} (a function on
+@f{\Pi T^* \left(\Pi T \Pi T G\right)}). 
+       
+We can now derive the integration prescription of
+〚@seclink["sec:AveragingUsingDg"]{@secref{sec:AveragingUsingDg}}〛.
+Let us put @f{F=0}. This means that
+we consider a slightly smaller BV phase space, namely
+the second factor is just @f{\Pi T^*(\Pi TG)}, and @f{A = dgg^{-1}}:
+@e{
+   M \times \Pi T^* \left(\Pi T G\right)
+   }
+For any function @f{V} on @f{M}, such that @f{\{S_{\rm BV},V\}=0} (``unintegrated vertex operator''), the half-density
+@f{e^{\widehat{S}_{\rm BV}} gV} satisfies the Quantum Master Equation:
+@e[#:label "QMEonGV"
+   ]{
+     \Delta_{\rm can}\left( e^{\widehat{S}_{\rm BV}} gV\right) = 0
+     }
+where @f{gV} is the action of @f{g\in G} on @f{V}.
+We will now explain that the half-density @f{e^{\widehat{S}_{\rm BV}} gV} defines a closed PDF @f{\omega_V} on @f{G}.
+The construction goes as follows. It is enough to define,  for any surface @f{X\subset G},
+the integral @f{\int_X \omega_V}. We define it in the following way.
+We define the Lagrangian submanifold in @f{L_X\subset \Pi T^*(\Pi TG)}, where
+ @f{g} and the corresponding antifield run over the odd conormal bundle of @f{X\subset G},
+ @f{(dg)^{\star} = 0} and let @f{dg} run freely.
+We define @f{\int_X \omega_V} as the integral of the half-density
+@f{e^{\widehat{S}_{\rm BV}}gV} over this Lagrangian submanifold times a Lagrangian submanifold in @f{M}.
+Eq (@ref{QMEonGV}) implies that @f{\omega_V} is a closed form.
+@comment{
+         This is a particular case of a general procedure.
+         For any PDF @f{\alpha} on a manifold @f{Y}, and a submanifold @f{X\subset Y}, we can define
+         @f{\int_X\alpha} as @f{\int_{L_X} e^{\underline{d}}\alpha} where @f{L_X} is the Lagrangian
+         submanifold in @f{\Pi T^*(\Pi TY)} which we have just described.
+         }
+On the other hand, the canonical transformation of Eq. (@ref{ExtendedMasterActionSplit}) implies that
+this is equivalent to:
+@e{
+   e^{S_{\rm BV} + \underline{d}} 
+   \left[
+         P\exp\left(\left\{ \int_0^1 {\cal A}_{\tau} d\tau\,,\_ \right\}\right)(gV)
+         \right]
+   }
+This is Eq. (@ref{LocalOmega}).
 
 @appendix
 

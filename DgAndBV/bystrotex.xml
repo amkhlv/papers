@@ -4,5 +4,9 @@
       <name>text</name>
       <multipage/>
     </scribbling>    
+    <scribbling>
+      <name>streamlined</name>
+      <multipage/>
+    </scribbling>    
   </scribblings>
 </config>
